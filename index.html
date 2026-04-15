@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Richard hanrick" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Richard hanrick">Aqib Mansoor</h1>
+
+          <p class="title">Web developer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:aqibmansoor40@gmail.com" class="contact-link">aqibmansoor40@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+923185952411" class="contact-link">+92 318 5952411</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="1982-06-23">June 05, 2001</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Near RMU, Tipu Road, Rawalpindi</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/aqib248" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://twitter.com/itzaqib248" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.instagram.com/_aqib_15" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://github.com/aqib-mansoor" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Experience</button>
+          </li>
+
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            A self-motivated <strong>Web Developer</strong> with a strong passion for creating modern, dynamic, and
+            user-focused web applications.
+            With expertise in <strong>React.js, Laravel, JavaScript, and SQL</strong>, I specialize in developing
+            responsive, secure,
+            and performance-optimized digital solutions that combine functionality with clean design.
+          </p>
+
+          <p>
+            I take pride in writing clean, maintainable code and delivering solutions that are both technically sound
+            and visually engaging.
+            My approach centers around understanding user needs, translating complex problems into intuitive interfaces,
+            and ensuring every project meets the highest standards of quality and performance.
+          </p>
+
+          <p>
+            Continuously driven to learn and improve, I stay up to date with emerging technologies and best practices to
+            build scalable,
+            future-ready web applications. Whether working independently or collaborating in a team, I’m dedicated to
+            delivering impactful results
+            and bringing creative ideas to life through code.
+          </p>
+        </section>
+
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg
+                " alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web design</h4>
+
+                <p class="service-item-text">
+                  The most modern and high-quality design made at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web development</h4>
+
+                <p class="service-item-text">
+                  High-quality development of sites at the professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">UI/UX Design</h4>
+
+                <p class="service-item-text">
+                  Crafting seamless user experiences through intuitive UI/UX design.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-grap.png" alt="camera icon" width="55">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Graphic Design</h4>
+
+                <p class="service-item-text">
+                  Transforming ideas into stunning visuals through graphic design.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+
+
+
+
+
+        <div class="modal-container" data-modal-container>
+
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-btn" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+          </section>
+
+        </div>
+
+
+      </article>
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">PMAS ARID (BIIT), Rawalpindi</h4>
+
+              <span>2021 — 2025</span>
+
+              <p class="timeline-text">
+                Barani Institute of Information Technology (BIIT), located at Pir Mehr Ali Shah Arid Agriculture
+                University in Rawalpindi, Punjab,
+                is a leading institute dedicated to excellence in computer science and information technology education.
+                Established through a partnership between Pir Mehr Ali Shah Arid Agriculture University and ROSE
+                International,
+                BIIT provides students with a strong foundation in modern computing and software development practices.
+              </p>
+
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Royal College of Sciences, Chakwal</h4>
+
+              <span>2019 — 2021</span>
+
+              <p class="timeline-text">
+                Attained remarkable results in intermediate studies at Royal College of Sciences, Chakwal, demonstrating
+                a dedication to academic excellence and a thirst for knowledge.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+
+ <section class="skills">
+  <div class="section-header">
+    <h3 class="h3 section-title">Skills & Expertise</h3>
+  </div>
+
+  <div class="skills-wrapper">
+
+    <!-- Frontend -->
+    <div class="skill-box floating">
+      <div class="skill-header">
+        <span class="icon gradient-icon">💻</span>
+        <h4>Frontend Development</h4>
+      </div>
+      <div class="skill-items">
+        <span class="skill-tag">React.js</span>
+        <span class="skill-tag">Next.js</span>
+        <span class="skill-tag">JavaScript (ES6+)</span>
+        <span class="skill-tag">Redux</span>
+        <span class="skill-tag">Tailwind CSS</span>
+        <span class="skill-tag">Framer Motion</span>
+        <span class="skill-tag">Shadcn UI</span>
+      </div>
+    </div>
+
+    <!-- Backend -->
+    <div class="skill-box floating">
+      <div class="skill-header">
+        <span class="icon gradient-icon">🛠️</span>
+        <h4>Backend Development</h4>
+      </div>
+      <div class="skill-items">
+        <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">REST API</span>
+        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">Postman</span>
+        <span class="skill-tag">Unit Testing</span>
+      </div>
+    </div>
+
+    <!-- Databases -->
+    <div class="skill-box floating">
+      <div class="skill-header">
+        <span class="icon gradient-icon">🗄️</span>
+        <h4>Databases</h4>
+      </div>
+      <div class="skill-items">
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">MongoDB</span>
+
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="skill-box floating">
+      <div class="skill-header">
+        <span class="icon gradient-icon">⚙️</span>
+        <h4>Tools & Platforms</h4>
+      </div>
+      <div class="skill-items">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">GitHub</span>
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Vercel</span>
+        <span class="skill-tag">Postman</span>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+      </article>
+
+
+      <!--
+  - #EXPERIENCE
+-->
+      <article class="experience" data-page="experience">
+        <header>
+          <h2 class="h2 article-title">Experience</h2>
+        </header>
+
+        <section class="timeline experience-timeline">
+
+          <ol class="timeline-list">
+
+            <!-- Enscyd Technologies -->
+            <li class="timeline-item full-time">
+              <h4 class="h4 timeline-item-title">Web Developer — Enscyd Technologies Pvt. Ltd.</h4>
+              <span class="timeline-item-date">Jul 2025 — Dec 2025</span>
+              <p class="timeline-text">
+                Developing and maintaining modern, responsive, high-performance web applications.
+                Building user interfaces with React.js, Next.js, and Tailwind CSS, integrating backend APIs using
+                Laravel,
+                and ensuring clean, scalable, optimized code. Collaborating with teams to deliver user-centric solutions
+                and
+                improve performance following industry best practices.
+              </p>
+            </li>
+
+            <!-- Devrolin Intern -->
+            <li class="timeline-item internship">
+              <h4 class="h4 timeline-item-title">Next.js Intern — Devrolin</h4>
+              <span class="timeline-item-date">Aug 2024 — Oct 2025</span>
+              <p class="timeline-text">
+                Developed interactive and responsive web applications using Next.js, integrating REST APIs for dynamic
+                content.
+                Built reusable components and optimized frontend performance. Collaborated with the development team to
+                ensure seamless user experience and maintainable code structure. Gained advanced experience in modern
+                frontend development practices and API integration.
+              </p>
+            </li>
+
+            <!-- YoungDev Intern -->
+            <li class="timeline-item internship">
+              <h4 class="h4 timeline-item-title">React.js Intern — YoungDev</h4>
+              <span class="timeline-item-date">Jan 2024 — Mar 2024</span>
+              <p class="timeline-text">
+                Worked on real-world frontend projects using React Hooks, Redux, and modular component architecture.
+                Built reusable UI components, improved state management logic, and optimized application performance.
+                Strengthened frontend engineering skills and deepened understanding of React best practices.
+              </p>
+            </li>
+
+            <!-- CodSoft Intern -->
+            <li class="timeline-item internship">
+              <h4 class="h4 timeline-item-title">Frontend Intern — CodSoft</h4>
+              <span class="timeline-item-date">Aug 2023 — Oct 2023</span>
+              <p class="timeline-text">
+                Contributed to developing responsive and user-friendly web pages using HTML, CSS, and JavaScript.
+                Improved UI layouts, implemented clean code principles, and gained a strong understanding of frontend
+                workflows.
+                Built a solid foundation in web development and UI/UX practices.
+              </p>
+            </li>
+
+
+
+          </ol>
+        </section>
+      </article>
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+
+        <section class="projects">
+
+
+
+          <ul class="project-list">
+
+             <!-- FoodieExpress -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://foodie-express-chi.vercel.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project14.png" alt="FoodieExpress">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">FoodieExpress</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge firebase">Firebase</span>
+                    <span class="tech-badge api">Typescript</span>
+                 
+
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+              <!-- Vendor portal -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://vendor-portal-ashen.vercel.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project15.png" alt="Vendor Portal">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Vendor Portal</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge firebase">Firebase</span>
+                    <span class="tech-badge api">Typescript</span>
+                 
+
+                  </div>
+                </div>
+              </a>
+            </li>
+            
+
+              <!-- Rider portal -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://foodie-express-rider-portal.vercel.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project16.png" alt="Rider Portal">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Rider Portal</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge firebase">Firebase</span>
+                    <span class="tech-badge api">Typescript</span>
+                 
+
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+              <!-- Admin portal -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://foodie-express-admin-panel.vercel.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project17.png" alt="Admin Portal">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Admin Dashboard</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge firebase">Firebase</span>
+                    <span class="tech-badge api">Typescript</span>
+                 
+
+                  </div>
+                </div>
+              </a>
+            </li>
+
+
+            <!-- Bannu Gul -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://bannu-gul-customer-web.vercel.app/">
+                <figure class="project-img">
+                  <img src="./assets/images/project12.png" alt="Bannu Gul BP Restaurant">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Bannu Gul BP Restaurant</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+               
+                    <span class="tech-badge api">REST API</span>
+                    <span class="tech-badge laravel">Laravel</span>
+
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://med-connect-ten.vercel.app/login">
+                <figure class="project-img">
+                  <img src="./assets/images/project13.png" alt="Bannu Gul BP Restaurant">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">MedConnect</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge typescript">TypeScript</span>
+                    <span class="tech-badge api">REST API</span>
+
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Quick Cart -->
+            <li class="project-item active" data-filter-item data-category="web design">
+              <a href="https://quick-cart-nextjs-eight.vercel.app/">
+                <figure class="project-img">
+                  <img src="./assets/images/project7.png" alt="Quick Cart">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Quick Cart</h3>
+                  <p class="project-category">Web Design</p>
+                  <div class="project-tech">
+                    <span class="tech-badge nextjs">Next.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge typescript">TypeScript</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- BIIT -->
+            <li class="project-item active" data-filter-item data-category="web design">
+              <a href="https://pmas-biit.netlify.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project2.png" alt="BIIT (PMAS)">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">BIIT (PMAS)</h3>
+                  <p class="project-category">Web Design</p>
+                  <div class="project-tech">
+                    <span class="tech-badge html">HTML</span>
+                    <span class="tech-badge css">CSS</span>
+                    <span class="tech-badge bootstrap">Bootstrap</span>
+                    <span class="tech-badge js">JavaScript</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Big Bite -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://big-bite.netlify.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project1.png" alt="Big Bite">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Big Bite</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge html">HTML</span>
+                    <span class="tech-badge css">CSS</span>
+                    <span class="tech-badge bootstrap">Bootstrap</span>
+
+                    <span class="tech-badge js">JavaScript</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Rider Portal -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="#">
+                <figure class="project-img">
+                  <img src="./assets/images/project8.png" alt="Rider Portal">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Rider Portal</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge laravel">Laravel</span>
+                    <span class="tech-badge mysql">MySQL</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Admin Panel -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="#">
+                <figure class="project-img">
+                  <img src="./assets/images/project10.png" alt="Admin Panel">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Admin Panel</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge laravel">Laravel</span>
+                    <span class="tech-badge mysql">MySQL</span>
+
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- Vendor Panel -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="#">
+                <figure class="project-img">
+                  <img src="./assets/images/project11.png" alt="Vendor Panel">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">Vendor Panel</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                    <span class="tech-badge mysql">MySQL</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- FOOD LAB -->
+            <li class="project-item active" data-filter-item data-category="web design">
+              <a href="https://sushilab.netlify.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project6.png" alt="FOOD LAB">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">FOOD LAB</h3>
+                  <p class="project-category">Web Design</p>
+                  <div class="project-tech">
+                    <span class="tech-badge html">HTML</span>
+                    <span class="tech-badge css">CSS</span>
+
+                    <span class="tech-badge js">JavaScript</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- SWAG KICK -->
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="https://swagykick.netlify.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project5.png" alt="SWAG KICK">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">SWAG KICK</h3>
+                  <p class="project-category">Web Development</p>
+                  <div class="project-tech">
+                    <span class="tech-badge html">HTML</span>
+                    <span class="tech-badge css">CSS</span>
+                    <span class="tech-badge bootstrap">Bootstrap</span>
+
+                    <span class="tech-badge js">JavaScript</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+            <!-- NEW LOOK -->
+            <li class="project-item active" data-filter-item data-category="web design">
+              <a href="https://look-new.netlify.app">
+                <figure class="project-img">
+                  <img src="./assets/images/project4.png" alt="NEW LOOK">
+                </figure>
+                <div class="project-content">
+                  <h3 class="project-title">NEW LOOK</h3>
+                  <p class="project-category">Web Design</p>
+                  <div class="project-tech">
+                    <span class="tech-badge react">React.js</span>
+                    <span class="tech-badge tailwind">Tailwind CSS</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+      </article>
+
+
+
+      <!-- CONTACT SECTION -->
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.938641470626!2d73.06852771761844!3d33.60689646724423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df94bdb2244bf7%3A0xa7cf79779264a9e1!2sAria%20Mohalla%20Marir%2C%20Rawalpindi%2C%20Punjab%2046000%2C%20Pakistan!5e0!3m2!1sen!2s!4v1727174979419!5m2!1sen!2s"
+              width="600" height="450" style="border:0;" allowfullscreen=""
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <!-- ✅ Correct form syntax -->
+          <form action="https://formsubmit.co/aqibmansoor70@gmail.com" method="POST">
+
+            <div class="input-wrapper">
+              <input type="text" name="Name" class="form-input" placeholder="Full name" required>
+              <input type="email" name="Email" class="form-input" placeholder="Email address" required>
+            </div>
+
+            <textarea name="Message" class="form-input" placeholder="Your Message" required></textarea>
+
+            <!-- Hidden FormSubmit options -->
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="true">
+            <input type="hidden" name="_subject" value="New Message from Portfolio">
+            <input type="hidden" name="_autoresponse"
+              value="Thanks for contacting Aqib Mansoor — he'll get back to you soon.">
+
+            <!-- ✅ Enable the button -->
+            <button class="form-btn" type="submit">
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
