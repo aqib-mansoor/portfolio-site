@@ -45,7 +45,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
     
     // Add formsubmit config hidden inputs
     formData.append('_template', 'table');
-    formData.append('_captcha', 'true');
+    formData.append('_captcha', 'false');
     formData.append('_subject', 'New Message from Portfolio');
     formData.append('_autoresponse', "Thanks for contacting Aqib Mansoor — he'll get back to you soon.");
 
@@ -110,7 +110,13 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
         <section className="contact-form reveal">
           <h3 className="h3 form-title">Contact Form</h3>
 
-          <form ref={formRef} onSubmit={handleSubmit} data-form>
+          <form
+            ref={formRef}
+            action="https://formsubmit.co/aqibmansoor70@gmail.com"
+            method="POST"
+            onSubmit={handleSubmit}
+            data-form
+          >
             <div className="input-wrapper">
               <input
                 type="text"
