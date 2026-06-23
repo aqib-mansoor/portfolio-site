@@ -54,6 +54,10 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       const templateParams = {
         from_name: name,
         from_email: email,
+        to_name: name,
+        to_email: email,
+        email: email,
+        name: name,
         message: message,
         services: services.length > 0 ? services.join(', ') : 'Not specified',
       };
