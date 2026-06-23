@@ -940,42 +940,69 @@
           <h2 class="h2 article-title">Contact</h2>
         </header>
 
-        <section class="mapbox reveal" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.938641470626!2d73.06852771761844!3d33.60689646724423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df94bdb2244bf7%3A0xa7cf79779264a9e1!2sAria%20Mohalla%20Marir%2C%20Rawalpindi%2C%20Punjab%2046000%2C%20Pakistan!5e0!3m2!1sen!2s!4v1727174979419!5m2!1sen!2s"
-              width="600" height="450" style="border:0;" allowfullscreen=""
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </figure>
-        </section>
+        <div class="contact-grid">
 
-        <section class="contact-form reveal">
-          <h3 class="h3 form-title">Contact Form</h3>
+          <section class="mapbox reveal" data-mapbox>
+            <figure>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.938641470626!2d73.06852771761844!3d33.60689646724423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df94bdb2244bf7%3A0xa7cf79779264a9e1!2sAria%20Mohalla%20Marir%2C%20Rawalpindi%2C%20Punjab%2046000%2C%20Pakistan!5e0!3m2!1sen!2s!4v1727174979419!5m2!1sen!2s"
+                width="600" height="450" style="border:0;" allowfullscreen=""
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </figure>
+          </section>
 
-          <!-- ✅ Correct form syntax -->
-          <form action="https://formsubmit.co/aqibmansoor70@gmail.com" method="POST" data-form>
+          <section class="contact-form reveal">
+            <h3 class="h3 form-title">Contact Form</h3>
 
-            <div class="input-wrapper">
-              <input type="text" name="Name" class="form-input" placeholder="Full name" required data-form-input>
-              <input type="email" name="Email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
+            <!-- ✅ Correct form syntax -->
+            <form action="https://formsubmit.co/aqibmansoor70@gmail.com" method="POST" data-form>
 
-            <textarea name="Message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+              <div class="input-wrapper">
+                <input type="text" name="Name" class="form-input" placeholder="Full name" required data-form-input>
+                <input type="email" name="Email" class="form-input" placeholder="Email address" required data-form-input>
+              </div>
 
-            <!-- Hidden FormSubmit options -->
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="true">
-            <input type="hidden" name="_subject" value="New Message from Portfolio">
-            <input type="hidden" name="_autoresponse"
-              value="Thanks for contacting Aqib Mansoor — he'll get back to you soon.">
+              <!-- Interactive Service Selector Pills -->
+              <div class="service-select-wrapper">
+                <p class="service-select-title">What services do you need?</p>
+                <div class="service-pills">
+                  <label class="service-pill">
+                    <input type="checkbox" name="services[]" value="Web Development">
+                    <span>Web App</span>
+                  </label>
+                  <label class="service-pill">
+                    <input type="checkbox" name="services[]" value="Mobile App">
+                    <span>Mobile App</span>
+                  </label>
+                  <label class="service-pill">
+                    <input type="checkbox" name="services[]" value="UI/UX Design">
+                    <span>UI/UX Design</span>
+                  </label>
+                  <label class="service-pill">
+                    <input type="checkbox" name="services[]" value="API Solutions">
+                    <span>Cloud/API</span>
+                  </label>
+                </div>
+              </div>
 
-            <!-- ✅ Enable the button -->
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-          </form>
-        </section>
+              <textarea name="Message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+              <!-- Hidden FormSubmit options -->
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="true">
+              <input type="hidden" name="_subject" value="New Message from Portfolio">
+              <input type="hidden" name="_autoresponse"
+                value="Thanks for contacting Aqib Mansoor — he'll get back to you soon.">
+
+              <!-- ✅ Enable the button -->
+              <button class="form-btn" type="submit" disabled data-form-btn>
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </section>
+
+        </div>
 
       </article>
 

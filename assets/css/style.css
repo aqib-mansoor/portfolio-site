@@ -1406,6 +1406,12 @@ main {
   filter: grayscale(1) invert(1);
 }
 
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .contact-form { margin-bottom: 10px; }
 
 .form-title { margin-bottom: 20px; }
@@ -1418,18 +1424,85 @@ main {
 }
 
 .form-input {
+  background: rgba(255, 255, 255, 0.02);
   color: var(--white-2);
   font-size: var(--fs-6);
   font-weight: var(--fw-400);
   padding: 13px 20px;
-  border: 1px solid var(--jet);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 14px;
   outline: none;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
 }
 
-.form-input::placeholder { font-weight: var(--fw-500); }
+.form-input::placeholder {
+  font-weight: var(--fw-400);
+  color: var(--light-gray-70);
+}
 
-.form-input:focus { border-color: var(--orange-yellow-crayola); }
+.form-input:focus {
+  border-color: var(--orange-yellow-crayola);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 12px rgba(255, 219, 112, 0.15);
+}
+
+/* Service Pills */
+.service-select-wrapper {
+  margin-bottom: 25px;
+}
+
+.service-select-title {
+  font-family: var(--ff-outfit);
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  margin-bottom: 12px;
+}
+
+.service-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.service-pill {
+  position: relative;
+  cursor: pointer;
+}
+
+.service-pill input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.service-pill span {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--light-gray-70);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.service-pill:hover span {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.service-pill input:checked + span {
+  background: var(--text-gradient-yellow);
+  color: var(--smoky-black);
+  font-weight: 600;
+  border-color: transparent;
+  box-shadow: 0 0 12px rgba(255, 219, 112, 0.25);
+}
 
 textarea.form-input {
   min-height: 100px;
@@ -1999,6 +2072,22 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .blog-banner-box { height: 230px; }
+
+  /**
+   * CONTACT
+   */
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 35px;
+    align-items: stretch;
+  }
+
+  .mapbox {
+    height: 100%;
+    margin-bottom: 0;
+  }
 
 }
 
