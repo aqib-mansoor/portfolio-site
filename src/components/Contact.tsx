@@ -1,4 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
+
+// ============================================================
+// EmailJS Configuration — Fill these in from your EmailJS dashboard
+// Steps:
+//   1. Sign up free at https://www.emailjs.com
+//   2. Go to "Email Services" → Add Service → Connect your Gmail
+//   3. Go to "Email Templates" → Create template for notification
+//      - Template variables: {{from_name}}, {{from_email}}, {{message}}, {{services}}
+//   4. Create a second template for auto-reply to the sender
+//      - Set "To Email" to {{from_email}} in template settings
+//      - Template variables: {{from_name}}, {{from_email}}
+//   5. Go to "Account" → copy your Public Key
+// ============================================================
+const EMAILJS_SERVICE_ID = 'service_qyxo0t7';
+const EMAILJS_NOTIFY_TEMPLATE = 'template_ok5gzzn';
+const EMAILJS_REPLY_TEMPLATE = 'template_lnvf9i6';
+const EMAILJS_PUBLIC_KEY = 'odOHlRNwPe0NnIw5t';
 
 interface ContactProps {
   onSuccess: () => void;
@@ -29,27 +47,11 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
     }
   }, [name, email, message]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValid || isSending) return;
 
     setIsSending(true);
-
-    const formData = new FormData();
-    formData.append('Name', name);
-    formData.append('email', email);
-    formData.append('Message', message);
-    services.forEach(service => {
-      formData.append('services[]', service);
-    });
-    
-    // Add formsubmit config hidden inputs
-    formData.append('_template', 'table');
-    formData.append('_captcha', 'false');
-    formData.append('_subject', 'New Message from Portfolio');
-    formData.append('_autoresponse', 
-      `Hi there!\n\nThank you for reaching out through my portfolio website. I've received your message and will get back to you within 24 hours.\n\nIn the meantime, feel free to connect with me on LinkedIn or check out my latest work on GitHub.\n\nBest regards,\nAqib Mansoor\nFull-Stack Web & App Developer`
-    );
 
     // Setup spin keyframes dynamically
     if (!document.getElementById('spin-keyframes')) {
@@ -59,32 +61,42 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       document.head.appendChild(style);
     }
 
-    fetch("https://formsubmit.co/aqibmansoor70@gmail.com", {
-      method: "POST",
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        onSuccess();
-        setName('');
-        setEmail('');
-        setMessage('');
-        setServices([]);
-        setIsValid(false);
-      } else {
-        alert("Oops! There was a problem submitting your message. Please try again.");
-      }
-    })
-    .catch(error => {
-      console.error("Form submission error:", error);
-      alert("Oops! There was a network error. Please try again.");
-    })
-    .finally(() => {
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+      services: services.length > 0 ? services.join(', ') : 'Not specified',
+    };
+
+    try {
+      // 1. Send notification email to you
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_NOTIFY_TEMPLATE,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      // 2. Send auto-reply to the person who submitted the form
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_REPLY_TEMPLATE,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      onSuccess();
+      setName('');
+      setEmail('');
+      setMessage('');
+      setServices([]);
+      setIsValid(false);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      alert('Oops! There was a problem submitting your message. Please try again.');
+    } finally {
       setIsSending(false);
-    });
+    }
   };
 
   return (
@@ -112,17 +124,11 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
         <section className="contact-form reveal">
           <h3 className="h3 form-title">Contact Form</h3>
 
-          <form
-            ref={formRef}
-            action="https://formsubmit.co/aqibmansoor70@gmail.com"
-            method="POST"
-            onSubmit={handleSubmit}
-            data-form
-          >
+          <form ref={formRef} onSubmit={handleSubmit} data-form>
             <div className="input-wrapper">
               <input
                 type="text"
-                name="Name"
+                name="from_name"
                 className="form-input"
                 placeholder="Full name"
                 required
@@ -132,7 +138,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
               />
               <input
                 type="email"
-                name="Email"
+                name="from_email"
                 className="form-input"
                 placeholder="Email address"
                 required
@@ -180,7 +186,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
             </div>
 
             <textarea
-              name="Message"
+              name="message"
               className="form-input"
               placeholder="Your Message"
               required
