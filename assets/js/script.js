@@ -52,62 +52,6 @@ if(testimonialsItem.length > 0 && modalImg && modalTitle && modalText){
 if(modalCloseBtn) modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 if(overlay) overlay.addEventListener("click", testimonialsModalFunc);
 
-// custom select (dropdown) & filtering logic
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-select-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
-
-if (select) {
-  select.addEventListener("click", function () {
-    elementToggleFunc(this);
-  });
-}
-
-// filter function
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-const filterFunc = function (selectedValue) {
-  if (filterItems.length > 0) {
-    filterItems.forEach(item => {
-      if (selectedValue === "all") {
-        item.classList.add("active");
-      } else if (selectedValue === item.dataset.category.toLowerCase()) {
-        item.classList.add("active");
-      } else {
-        item.classList.remove("active");
-      }
-    });
-  }
-}
-
-// add event in all select items for mobile filtering
-if (selectItems.length > 0) {
-  selectItems.forEach(item => {
-    item.addEventListener("click", function () {
-      let selectedValue = this.innerText.toLowerCase();
-      if (selectValue) selectValue.innerText = this.innerText;
-      if (select) select.classList.remove("active");
-      filterFunc(selectedValue);
-    });
-  });
-}
-
-// add event in all filter button items for desktop filtering
-if (filterBtn.length > 0) {
-  let lastClickedBtn = filterBtn[0];
-
-  filterBtn.forEach(btn => {
-    btn.addEventListener("click", function () {
-      let selectedValue = this.innerText.toLowerCase();
-      filterFunc(selectedValue);
-
-      if (lastClickedBtn) lastClickedBtn.classList.remove("active");
-      this.classList.add("active");
-      lastClickedBtn = this;
-    });
-  });
-}
 
 // contact form variables
 const form = document.querySelector("[data-form]");
