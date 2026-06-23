@@ -1,18 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
-// ============================================================
-// EmailJS Configuration — Fill these in from your EmailJS dashboard
-// Steps:
-//   1. Sign up free at https://www.emailjs.com
-//   2. Go to "Email Services" → Add Service → Connect your Gmail
-//   3. Go to "Email Templates" → Create template for notification
-//      - Template variables: {{from_name}}, {{from_email}}, {{message}}, {{services}}
-//   4. Create a second template for auto-reply to the sender
-//      - Set "To Email" to {{from_email}} in template settings
-//      - Template variables: {{from_name}}, {{from_email}}
-//   5. Go to "Account" → copy your Public Key
-// ============================================================
+// EmailJS config
 const EMAILJS_SERVICE_ID = 'service_qyxo0t7';
 const EMAILJS_NOTIFY_TEMPLATE = 'template_ok5gzzn';
 const EMAILJS_REPLY_TEMPLATE = 'template_lnvf9i6';
@@ -61,15 +50,15 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       document.head.appendChild(style);
     }
 
-    const templateParams = {
-      from_name: name,
-      from_email: email,
-      message: message,
-      services: services.length > 0 ? services.join(', ') : 'Not specified',
-    };
-
     try {
-      // 1. Send notification email to you
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        message: message,
+        services: services.length > 0 ? services.join(', ') : 'Not specified',
+      };
+
+      // 1. Send notification to owner via EmailJS
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_NOTIFY_TEMPLATE,
@@ -77,7 +66,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
         EMAILJS_PUBLIC_KEY
       );
 
-      // 2. Send auto-reply to the person who submitted the form
+      // 2. Send auto-reply to the sender via EmailJS
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_REPLY_TEMPLATE,
@@ -92,7 +81,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       setServices([]);
       setIsValid(false);
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Form submission error:', error);
       alert('Oops! There was a problem submitting your message. Please try again.');
     } finally {
       setIsSending(false);
