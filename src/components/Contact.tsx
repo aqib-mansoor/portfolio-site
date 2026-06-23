@@ -59,24 +59,34 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       };
 
       // 1. Send notification to owner via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_NOTIFY_TEMPLATE,
-        templateParams,
-        {
-          publicKey: EMAILJS_PUBLIC_KEY,
-        }
-      );
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_NOTIFY_TEMPLATE,
+          templateParams,
+          {
+            publicKey: EMAILJS_PUBLIC_KEY,
+          }
+        );
+      } catch (notifyError: any) {
+        console.error('EmailJS Notification Template failed:', notifyError);
+        throw new Error(`Notification failed: ${notifyError?.text || notifyError?.message || notifyError}`);
+      }
 
       // 2. Send auto-reply to the sender via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_REPLY_TEMPLATE,
-        templateParams,
-        {
-          publicKey: EMAILJS_PUBLIC_KEY,
-        }
-      );
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_REPLY_TEMPLATE,
+          templateParams,
+          {
+            publicKey: EMAILJS_PUBLIC_KEY,
+          }
+        );
+      } catch (replyError: any) {
+        console.error('EmailJS Auto-Reply Template failed:', replyError);
+        throw new Error(`Auto-reply failed: ${replyError?.text || replyError?.message || replyError}`);
+      }
 
       onSuccess();
       setName('');
@@ -84,9 +94,9 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       setMessage('');
       setServices([]);
       setIsValid(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Form submission error:', error);
-      alert('Oops! There was a problem submitting your message. Please try again.');
+      alert(`Submission error: ${error.message || 'Please check your EmailJS template settings.'}`);
     } finally {
       setIsSending(false);
     }
