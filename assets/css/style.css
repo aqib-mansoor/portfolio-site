@@ -159,19 +159,20 @@
 .project-item {
   display: flex;
   flex-direction: column;
-  background: rgba(30, 30, 30, 0.6); /* semi-transparent dark */
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.4s, background 0.3s;
-  backdrop-filter: blur(10px); /* glass effect */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* subtle border */
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   cursor: pointer;
 }
 
 .project-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.1);
-  background: rgba(40, 40, 40, 0.8);
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .project-item a {
@@ -222,41 +223,55 @@
 .project-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 5px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .project-tech .tech-badge {
-  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 500;
-  transition: all 0.3s;
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.25s ease;
+  color: #d1d5db;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(5px);
 }
 
 .project-tech .tech-badge:hover {
   transform: translateY(-2px);
-  background-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 175, 55, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Tech colors (optional glow effect) */
-.tech-badge.react { background-color: rgba(97, 218, 251, 0.7); color: #000; }
-.tech-badge.tailwind { background-color: rgba(56, 189, 248, 0.7); color: #000; }
-.tech-badge.firebase { background-color: rgba(255, 203, 43, 0.7); color: #000; }
-.tech-badge.api { background-color: rgba(74, 222, 128, 0.7); color: #000; }
-.tech-badge.laravel { background-color: rgba(240, 83, 64, 0.7); color: #fff; }
-.tech-badge.php { background-color: rgba(119, 123, 179, 0.7); color: #fff; }
-.tech-badge.mysql { background-color: rgba(0, 117, 143, 0.7); color: #fff; }
-.tech-badge.bootstrap { background-color: rgba(121, 82, 179, 0.7); color: #fff; }
-.tech-badge.typescript { background-color: rgba(49, 120, 198, 0.7); color: #fff; }
-.tech-badge.html { background-color: rgba(227, 79, 38, 0.7); color: #fff; }
-.tech-badge.css { background-color: rgba(38, 77, 228, 0.7); color: #fff; }
-.tech-badge.js { background-color: rgba(240, 219, 79, 0.7); color: #000; }
-.tech-badge.nodejs { background-color: rgba(60, 135, 58, 0.7); color: #fff; }
+.tech-badge::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.tech-badge.react::before { background: #61dafb; }
+.tech-badge.tailwind::before { background: #38bdf8; }
+.tech-badge.firebase::before { background: #ffcb2b; }
+.tech-badge.api::before { background: #00bcd4; }
+.tech-badge.laravel::before { background: #ff2d20; }
+.tech-badge.php::before { background: #777bb4; }
+.tech-badge.mysql::before { background: #00758f; }
+.tech-badge.bootstrap::before { background: #7952b3; }
+.tech-badge.typescript::before { background: #3178c6; }
+.tech-badge.html::before { background: #e34f26; }
+.tech-badge.css::before { background: #264de4; }
+.tech-badge.js::before { background: #f7df1e; }
+.tech-badge.nodejs::before { background: #339933; }
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
