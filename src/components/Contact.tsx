@@ -37,7 +37,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
 
     const formData = new FormData();
     formData.append('Name', name);
-    formData.append('Email', email);
+    formData.append('email', email);
     formData.append('Message', message);
     services.forEach(service => {
       formData.append('services[]', service);
@@ -47,7 +47,9 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
     formData.append('_template', 'table');
     formData.append('_captcha', 'false');
     formData.append('_subject', 'New Message from Portfolio');
-    formData.append('_autoresponse', "Thanks for contacting Aqib Mansoor — he'll get back to you soon.");
+    formData.append('_autoresponse', 
+      `Hi there!\n\nThank you for reaching out through my portfolio website. I've received your message and will get back to you within 24 hours.\n\nIn the meantime, feel free to connect with me on LinkedIn or check out my latest work on GitHub.\n\nBest regards,\nAqib Mansoor\nFull-Stack Web & App Developer`
+    );
 
     // Setup spin keyframes dynamically
     if (!document.getElementById('spin-keyframes')) {
