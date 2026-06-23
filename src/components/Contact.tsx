@@ -63,7 +63,9 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
         EMAILJS_SERVICE_ID,
         EMAILJS_NOTIFY_TEMPLATE,
         templateParams,
-        EMAILJS_PUBLIC_KEY
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }
       );
 
       // 2. Send auto-reply to the sender via EmailJS
@@ -71,7 +73,9 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
         EMAILJS_SERVICE_ID,
         EMAILJS_REPLY_TEMPLATE,
         templateParams,
-        EMAILJS_PUBLIC_KEY
+        {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        }
       );
 
       onSuccess();
