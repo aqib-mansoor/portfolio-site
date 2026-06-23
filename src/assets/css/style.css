@@ -1478,7 +1478,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .info_more-btn ion-icon { display: none; }
 
-  .separator { margin: 32px 0; }
+  .separator { margin: 20px 0; }
 
   .contacts-list { gap: 20px; }
 
@@ -1507,7 +1507,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .about .article-title { margin-bottom: 20px; }
 
-  .about-text { margin-bottom: 40px; }
+  .about-text { margin-bottom: 25px; }
 
   /* service */
 
@@ -1516,7 +1516,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     justify-content: flex-start;
     align-items: center;
     gap: 18px;
-    padding: 30px;
+    padding: 20px 24px;
   }
 
   .service-icon-box {
@@ -1785,7 +1785,10 @@ textarea.form-input::-webkit-resizer { display: none; }
    * MAIN 
    */
 
-  main { margin-bottom: 60px; }
+  main {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 
   .main-content {
     position: relative;
@@ -1943,10 +1946,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar {
     position: sticky;
-    top: 60px;
+    top: 40px;
     max-height: max-content;
     margin-bottom: 0;
-    padding-top: 60px;
+    padding-top: 40px;
     z-index: 1;
     align-self: flex-start;
   }
