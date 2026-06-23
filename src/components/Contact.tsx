@@ -4,7 +4,7 @@ import emailjs from '@emailjs/browser';
 // EmailJS config
 const EMAILJS_SERVICE_ID = 'service_qyxo0t7';
 const EMAILJS_NOTIFY_TEMPLATE = 'template_ok5gzzn';
-const EMAILJS_REPLY_TEMPLATE = 'template_lnvf9i6';
+const EMAILJS_REPLY_TEMPLATE = 'template_w03n8bv';
 const EMAILJS_PUBLIC_KEY = 'odOHlRNwPe0NnIw5t';
 
 interface ContactProps {

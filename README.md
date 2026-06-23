@@ -56,7 +56,7 @@ Configuration settings are stored at the top of the [Contact component](file:///
 
 - **Service ID:** `service_qyxo0t7`
 - **Notification Template ID:** `template_ok5gzzn`
-- **Auto-Reply Template ID:** `template_lnvf9i6`
+- **Auto-Reply Template ID:** `template_w03n8bv`
 - **Public Key:** `odOHlRNwPe0NnIw5t`
 
 > [!IMPORTANT]
