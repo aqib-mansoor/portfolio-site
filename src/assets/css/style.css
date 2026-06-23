@@ -1920,7 +1920,8 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   main {
-    max-width: 1200px;
+    max-width: 1350px;
+    width: 95%;
     margin-inline: auto;
     display: flex;
     justify-content: center;
@@ -1929,8 +1930,8 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .main-content {
-    min-width: 75%;
-    width: 75%;
+    min-width: 72%;
+    width: 72%;
     margin: 0;
   }
 
@@ -1944,10 +1945,10 @@ textarea.form-input::-webkit-resizer { display: none; }
     position: sticky;
     top: 60px;
     max-height: max-content;
-    height: 100%;
     margin-bottom: 0;
     padding-top: 60px;
     z-index: 1;
+    align-self: flex-start;
   }
 
   .sidebar-info { flex-direction: column; }
@@ -1971,9 +1972,9 @@ textarea.form-input::-webkit-resizer { display: none; }
   .contacts-list { grid-template-columns: 1fr; }
 
   .contact-info :is(.contact-link) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .contact-info :is(.contact-link, time, address) {
