@@ -351,6 +351,7 @@
 
   /* font-family */
   --ff-poppins: 'Poppins', sans-serif;
+  --ff-outfit: 'Outfit', sans-serif;
 
   /* font-size */
   --fs-1: 24px;
@@ -429,9 +430,13 @@ input, textarea {
 
 :focus { outline-color: var(--orange-yellow-crayola); }
 
-html { font-family: var(--ff-poppins); }
+html { font-family: var(--ff-poppins); scroll-behavior: smooth; }
 
 body { background: var(--smoky-black); }
+
+.h1, .h2, .h3, .h4, .h5, .h6, .article-title, .name, .title, .navbar-link, .timeline-item-title, .toast-title {
+  font-family: var(--ff-outfit);
+}
 
 
 
@@ -443,12 +448,14 @@ body { background: var(--smoky-black); }
 
 .sidebar,
 article {
-  background: var(--eerie-black-2);
-  border: 1px solid var(--jet);
+  background: rgba(30, 30, 31, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   padding: 15px;
   box-shadow: var(--shadow-1);
+  backdrop-filter: blur(20px);
   z-index: 1;
+  transition: border-color var(--transition-1), box-shadow var(--transition-1);
 }
 
 .separator {
@@ -1197,34 +1204,41 @@ main {
 }
 
 .filter-select {
-  background: var(--eerie-black-2);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--light-gray);
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid var(--jet);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 14px;
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
+  backdrop-filter: blur(10px);
+  transition: var(--transition-1);
+}
+
+.filter-select:hover {
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .filter-select.active .select-icon { transform: rotate(0.5turn); }
 
 .select-list {
-  background: var(--eerie-black-2);
+  background: rgba(30, 30, 31, 0.95);
   position: absolute;
   top: calc(100% + 6px);
   width: 100%;
   padding: 6px;
-  border: 1px solid var(--jet);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
-  z-index: 2;
+  z-index: 5;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: 0.15s ease-in-out;
+  backdrop-filter: blur(20px);
 }
 
 .filter-select.active + .select-list {
@@ -1234,7 +1248,7 @@ main {
 }
 
 .select-item button {
-  background: var(--eerie-black-2);
+  background: transparent;
   color: var(--light-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
@@ -1242,9 +1256,13 @@ main {
   width: 100%;
   padding: 8px 10px;
   border-radius: 8px;
+  transition: var(--transition-1);
 }
 
-.select-item button:hover { --eerie-black-2: hsl(240, 2%, 20%); }
+.select-item button:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
 
 .project-list {
   display: grid;
@@ -1256,7 +1274,7 @@ main {
 .project-item { display: none; }
 
 .project-item.active {
-  display: block;
+  display: flex;
   animation: scaleUp 0.25s ease forwards;
 }
 
@@ -1332,6 +1350,16 @@ main {
   font-weight: var(--fw-400);
   text-transform: capitalize;
   line-height: 1.3;
+}
+
+.project-desc {
+  color: var(--light-gray-70);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  line-height: 1.4;
+  margin-left: 10px;
 }
 
 .project-category {
@@ -1921,20 +1949,35 @@ textarea.form-input::-webkit-resizer { display: none; }
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 25px;
-    padding-left: 5px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 32px;
   }
 
   .filter-item button {
-    color: var(--light-gray);
-    font-size: var(--fs-5);
-    transition: var(--transition-1);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--light-gray-70);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-family: var(--ff-outfit);
+    font-size: var(--fs-6);
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
-  .filter-item button:hover { color: var(--light-gray-70); }
+  .filter-item button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(212, 175, 55, 0.2);
+  }
 
-  .filter-item button.active { color: var(--orange-yellow-crayola); }
+  .filter-item button.active {
+    background: var(--text-gradient-yellow);
+    color: var(--smoky-black);
+    font-weight: 600;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(229, 193, 88, 0.25);
+  }
 
   /* portfolio and blog grid */
 
@@ -2269,4 +2312,82 @@ textarea.form-input::-webkit-resizer { display: none; }
 .timeline-item:hover .exp-tech-tag {
   border-color: rgba(212, 175, 55, 0.15);
   color: var(--vegas-gold);
+}
+
+/* Success toast notification styling */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(24, 24, 25, 0.9);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+  border-radius: 14px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 213, 115, 0.05);
+  backdrop-filter: blur(15px);
+  z-index: 100;
+  transform: translateY(100px) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.toast-icon {
+  font-size: 24px;
+  color: #2ed573;
+}
+
+.toast-message {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toast-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.toast-text {
+  font-size: 0.85rem;
+  color: var(--light-gray-70);
+}
+
+/* Scroll-triggered reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button interactive upgrades */
+.form-btn {
+  transition: all 0.3s ease;
+}
+
+.form-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+.form-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
