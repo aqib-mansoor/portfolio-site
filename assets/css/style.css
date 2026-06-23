@@ -1072,7 +1072,7 @@ main {
   color: var(--white-1);
 }
 
-.timeline-list span {
+.timeline-item-date {
   position: absolute;
   top: 20px;
   right: 24px;
@@ -1082,7 +1082,7 @@ main {
 }
 
 @media (max-width: 580px) {
-  .timeline-list span {
+  .timeline-item-date {
     position: static;
     margin-top: 5px;
     margin-bottom: 12px;
@@ -2178,4 +2178,80 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+}
+
+/* Job type badge */
+.exp-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 10px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.exp-badge.full-time {
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px solid rgba(46, 213, 115, 0.25);
+  color: #2ed573;
+}
+
+.exp-badge.internship {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: #00d4ff;
+}
+
+/* Bullet points list in experience */
+.timeline-text ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 12px 0;
+}
+
+.timeline-text li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--light-gray);
+  line-height: 1.5;
+}
+
+.timeline-text li::before {
+  content: "•";
+  position: absolute;
+  left: 5px;
+  color: var(--orange-yellow-crayola);
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+/* Tech badges under experience */
+.exp-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.exp-tech-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--light-gray-70);
+  transition: all 0.25s ease;
+}
+
+.timeline-item:hover .exp-tech-tag {
+  border-color: rgba(212, 175, 55, 0.15);
+  color: var(--vegas-gold);
 }
