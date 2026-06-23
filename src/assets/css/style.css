@@ -1265,7 +1265,7 @@ main {
 .project-item > a:hover img { transform: scale(1.1); }
 
 .project-title,
-.project-category { margin-left: 10px; }
+.project-category { margin-left: 0; }
 
 .project-title {
   color: var(--white-2);
@@ -1282,7 +1282,7 @@ main {
   margin-top: 4px;
   margin-bottom: 4px;
   line-height: 1.4;
-  margin-left: 10px;
+  margin-left: 0;
 }
 
 .project-category {
