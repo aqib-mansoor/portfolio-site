@@ -1624,14 +1624,14 @@ textarea.form-input::-webkit-resizer { display: none; }
   .service-item {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     gap: 18px;
     padding: 30px;
   }
 
   .service-icon-box {
     margin-bottom: 0;
-    margin-top: 5px;
+    margin-top: 0;
   }
 
   .service-content-box { text-align: left; }
