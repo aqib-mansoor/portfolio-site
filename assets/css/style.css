@@ -101,7 +101,13 @@
   gap: 10px;
 }
 
+.skill-h4 {
+  margin: 0;
+}
+
 .skill-tag {
+  display: flex;
+  align-items: center;
   padding: 6px 12px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.03);
@@ -110,6 +116,24 @@
   font-size: 0.85rem;
   font-weight: 500;
   transition: all 0.25s ease;
+}
+
+.skill-subtitle {
+  font-size: 0.85rem;
+  color: var(--light-gray-70);
+  margin-top: -16px;
+  margin-bottom: 20px;
+  font-weight: 300;
+  display: block;
+}
+
+.tag-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .skill-box:hover .skill-tag {
