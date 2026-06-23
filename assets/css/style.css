@@ -1010,7 +1010,7 @@ main {
 
 .timeline { margin-bottom: 30px; }
 
-.timeline .title-wrapper {
+.title-wrapper {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -1104,6 +1104,10 @@ main {
 /**
  * skills 
  */
+
+.skills {
+  margin-top: 50px !important;
+}
 
 .skills-title { margin-bottom: 20px; }
 
