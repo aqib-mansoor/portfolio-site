@@ -358,8 +358,8 @@
   --white-2: hsl(0, 0%, 98%);
   --orange-yellow-crayola: hsl(72, 100%, 50%);
   --vegas-gold: hsl(72, 100%, 50%);
-  --light-gray: hsl(0, 0%, 84%);
-  --light-gray-70: hsla(0, 0%, 84%, 0.7);
+  --light-gray: hsl(0, 0%, 92%);
+  --light-gray-70: hsla(0, 0%, 92%, 0.85);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
 
   /**
@@ -445,7 +445,14 @@ input, textarea {
   color: var(--smoky-black);
 }
 
-:focus { outline-color: var(--orange-yellow-crayola); }
+:focus-visible {
+  outline: 2px solid var(--orange-yellow-crayola);
+  outline-offset: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
 
 html { font-family: var(--ff-poppins); scroll-behavior: smooth; }
 

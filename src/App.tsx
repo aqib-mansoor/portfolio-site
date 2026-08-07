@@ -71,7 +71,15 @@ export const App: React.FC = () => {
       <Sidebar />
       <div className="main-content">
         <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
-        {renderActiveComponent()}
+        <div
+          id={`${activeTab}-panel`}
+          role="tabpanel"
+          aria-labelledby={`${activeTab}-tab`}
+          tabIndex={0}
+          style={{ outline: 'none' }}
+        >
+          {renderActiveComponent()}
+        </div>
       </div>
       <Toast show={showToast} />
     </main>
