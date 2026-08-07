@@ -14,8 +14,8 @@ export const Resume: React.FC = () => {
     {
       title: "Frontend Development",
       subtitle: "Interactive UI & SPAs",
-      glowColor: "rgba(0, 212, 255, 0.12)",
-      themeColor: "#00d4ff",
+      glowColor: "rgba(204, 255, 0, 0.06)",
+      themeColor: "#CCFF00",
       icon: "desktop-outline",
       items: [
         { name: "React", color: "#61dafb" },
@@ -30,8 +30,8 @@ export const Resume: React.FC = () => {
     {
       title: "Mobile Development",
       subtitle: "Cross-Platform & Native Apps",
-      glowColor: "rgba(46, 213, 115, 0.12)",
-      themeColor: "#2ed573",
+      glowColor: "rgba(204, 255, 0, 0.06)",
+      themeColor: "#CCFF00",
       icon: "phone-portrait-outline",
       items: [
         { name: "React Native", color: "#61dafb" },
@@ -44,8 +44,8 @@ export const Resume: React.FC = () => {
     {
       title: "Backend Development",
       subtitle: "APIs & Server Architecture",
-      glowColor: "rgba(240, 83, 64, 0.12)",
-      themeColor: "#f05340",
+      glowColor: "rgba(204, 255, 0, 0.06)",
+      themeColor: "#CCFF00",
       icon: "server-outline",
       items: [
         { name: "Laravel", color: "#ff2d20" },
@@ -59,8 +59,8 @@ export const Resume: React.FC = () => {
     {
       title: "Databases",
       subtitle: "Data Architecture & Management",
-      glowColor: "rgba(255, 193, 7, 0.12)",
-      themeColor: "#ffc107",
+      glowColor: "rgba(204, 255, 0, 0.06)",
+      themeColor: "#CCFF00",
       icon: "cube-outline",
       items: [
         { name: "MongoDB", color: "#47a248" },
@@ -71,8 +71,8 @@ export const Resume: React.FC = () => {
     {
       title: "Tools & Platforms",
       subtitle: "DevOps & Cloud Workflows",
-      glowColor: "rgba(165, 55, 253, 0.12)",
-      themeColor: "#a537fd",
+      glowColor: "rgba(204, 255, 0, 0.06)",
+      themeColor: "#CCFF00",
       icon: "settings-outline",
       items: [
         { name: "AWS", color: "#ff9900" },
