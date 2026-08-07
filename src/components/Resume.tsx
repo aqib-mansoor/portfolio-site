@@ -14,7 +14,7 @@ export const Resume: React.FC = () => {
     {
       title: "Frontend Development",
       subtitle: "Interactive UI & SPAs",
-      glowColor: "rgba(204, 255, 0, 0.06)",
+      glowColor: "rgba(204, 255, 0, 0.15)",
       themeColor: "#CCFF00",
       icon: "desktop-outline",
       items: [
@@ -30,7 +30,7 @@ export const Resume: React.FC = () => {
     {
       title: "Mobile Development",
       subtitle: "Cross-Platform & Native Apps",
-      glowColor: "rgba(204, 255, 0, 0.06)",
+      glowColor: "rgba(204, 255, 0, 0.15)",
       themeColor: "#CCFF00",
       icon: "phone-portrait-outline",
       items: [
@@ -44,7 +44,7 @@ export const Resume: React.FC = () => {
     {
       title: "Backend Development",
       subtitle: "APIs & Server Architecture",
-      glowColor: "rgba(204, 255, 0, 0.06)",
+      glowColor: "rgba(204, 255, 0, 0.15)",
       themeColor: "#CCFF00",
       icon: "server-outline",
       items: [
@@ -59,7 +59,7 @@ export const Resume: React.FC = () => {
     {
       title: "Databases",
       subtitle: "Data Architecture & Management",
-      glowColor: "rgba(204, 255, 0, 0.06)",
+      glowColor: "rgba(204, 255, 0, 0.15)",
       themeColor: "#CCFF00",
       icon: "cube-outline",
       items: [
@@ -71,7 +71,7 @@ export const Resume: React.FC = () => {
     {
       title: "Tools & Platforms",
       subtitle: "DevOps & Cloud Workflows",
-      glowColor: "rgba(204, 255, 0, 0.06)",
+      glowColor: "rgba(204, 255, 0, 0.15)",
       themeColor: "#CCFF00",
       icon: "settings-outline",
       items: [
