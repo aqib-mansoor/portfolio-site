@@ -109,7 +109,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
   return (
     <article className="contact active" data-page="contact">
       <header>
-        <h2 className="h2 article-title">Contact</h2>
+        <h2 className="h2 article-title" aria-label="Page Title: Contact">Contact</h2>
       </header>
 
       <div className="contact-grid">

@@ -232,7 +232,7 @@ export const Projects: React.FC = () => {
   return (
     <article className="portfolio active" data-page="projects">
       <header>
-        <h2 className="h2 article-title">Projects</h2>
+        <h2 className="h2 article-title" aria-label="Page Title: Projects">Projects</h2>
       </header>
 
       <section className="projects">

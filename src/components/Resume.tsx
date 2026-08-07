@@ -89,7 +89,7 @@ export const Resume: React.FC = () => {
   return (
     <article className="resume active" data-page="resume">
       <header>
-        <h2 className="h2 article-title">Resume</h2>
+        <h2 className="h2 article-title" aria-label="Page Title: Resume">Resume</h2>
       </header>
 
       <section className="timeline">

@@ -472,7 +472,7 @@ body { background: var(--smoky-black); }
 
 .sidebar,
 article {
-  background: rgba(30, 30, 31, 0.75);
+  background: rgba(18, 18, 19, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   padding: 15px;
@@ -763,7 +763,7 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: hsla(240, 1%, 17%, 0.75);
+  background: hsla(240, 2%, 9%, 0.92);
   backdrop-filter: blur(10px);
   border: 1px solid var(--jet);
   border-radius: 12px 12px 0 0;
@@ -881,7 +881,7 @@ main {
 .service-item-text {
   color: var(--light-gray);
   font-size: var(--fs-6);
-  font-weight: var(--fw-3);
+  font-weight: var(--fw-300);
   line-height: 1.6;
 }
 

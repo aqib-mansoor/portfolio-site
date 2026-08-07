@@ -67,10 +67,16 @@ export const Experience: React.FC = () => {
   return (
     <article className="experience active" data-page="experience">
       <header>
-        <h2 className="h2 article-title">Experience</h2>
+        <h2 className="h2 article-title" aria-label="Page Title: Experience">Experience</h2>
       </header>
 
       <section className="timeline experience-timeline">
+        <div className="title-wrapper" style={{ marginBottom: '30px' }}>
+          <div className="icon-box">
+            <ion-icon name="briefcase-outline"></ion-icon>
+          </div>
+          <h3 className="h3">Work History</h3>
+        </div>
         <ol className="timeline-list">
           {experiences.map((exp, index) => (
             <li

@@ -27,7 +27,7 @@ export const About: React.FC = () => {
   return (
     <article className="about active" data-page="about">
       <header>
-        <h2 className="h2 article-title">About me</h2>
+        <h2 className="h2 article-title" aria-label="Page Title: About me">About me</h2>
       </header>
 
       <section className="about-text">
