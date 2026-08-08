@@ -2625,6 +2625,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     height: 440px;
     bottom: 70px;
     border-radius: 16px;
+    background: #1e1e1f !important; /* Fully opaque background to prevent showing text behind it */
   }
 }
 
