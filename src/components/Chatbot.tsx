@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import { usePortfolioStore } from '../store/usePortfolioStore';
 
 const EMAILJS_SERVICE_ID = 'service_qyxo0t7';
 const EMAILJS_NOTIFY_TEMPLATE = 'template_ok5gzzn';
@@ -18,10 +19,6 @@ interface QuickReply {
   queryText: string;
   keywords: string[];
   response: string;
-}
-
-interface ChatbotProps {
-  setActiveTab?: (tab: string) => void;
 }
 
 const renderMessageText = (text: string) => {
@@ -116,7 +113,8 @@ const renderMessageText = (text: string) => {
   });
 };
 
-export const Chatbot: React.FC<ChatbotProps> = ({ setActiveTab }) => {
+export const Chatbot: React.FC = () => {
+  const setActiveTab = usePortfolioStore((state) => state.setActiveTab);
   const [isOpen, setIsOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Default to muted so audio doesn't startle
   const [isListening, setIsListening] = useState(false);

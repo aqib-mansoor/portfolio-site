@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Skill {
   title: string;
@@ -10,6 +10,8 @@ interface Skill {
 }
 
 export const Resume: React.FC = () => {
+  const [activeSkillCategory, setActiveSkillCategory] = useState<string>('All');
+
   const skills: Skill[] = [
     {
       title: "Frontend Development",
@@ -86,6 +88,15 @@ export const Resume: React.FC = () => {
     }
   ];
 
+  const filteredSkills = skills.filter((skill) => {
+    if (activeSkillCategory === 'All') return true;
+    if (activeSkillCategory === 'Frontend') return skill.title === 'Frontend Development';
+    if (activeSkillCategory === 'Backend') return skill.title === 'Backend Development';
+    if (activeSkillCategory === 'Mobile') return skill.title === 'Mobile Development';
+    if (activeSkillCategory === 'Tools & Platforms') return skill.title === 'Databases' || skill.title === 'Tools & Platforms';
+    return true;
+  });
+
   return (
     <article className="resume active" data-page="resume">
       <header>
@@ -133,8 +144,22 @@ export const Resume: React.FC = () => {
           <h3 className="h3">Skills & Expertise</h3>
         </div>
 
+        {/* Skill Category Filter Pills */}
+        <ul className="filter-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', listStyleType: 'none', padding: '0', marginBottom: '25px' }}>
+          {['All', 'Frontend', 'Backend', 'Mobile', 'Tools & Platforms'].map((category) => (
+            <li key={category} className="filter-item">
+              <button
+                className={`filter-btn ${activeSkillCategory === category ? 'active' : ''}`}
+                onClick={() => setActiveSkillCategory(category)}
+              >
+                {category}
+              </button>
+            </li>
+          ))}
+        </ul>
+
         <div className="skills-wrapper">
-          {skills.map((skill, index) => (
+          {filteredSkills.map((skill, index) => (
             <div
               key={index}
               className="skill-box floating reveal"

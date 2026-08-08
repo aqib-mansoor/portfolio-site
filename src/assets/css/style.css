@@ -1080,15 +1080,36 @@ main {
 }
 
 
-.project-item > a { width: 100%; }
+.project-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.05);
+}
+
+.project-item > a, .project-card-btn { 
+  width: 100%; 
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  display: block;
+}
 
 .project-img {
   position: relative;
   width: 100%;
   height: 200px;
-  border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 .project-img::before {
@@ -2821,6 +2842,258 @@ textarea.form-input::-webkit-resizer { display: none; }
     transform: translateY(-2px);
   }
 }
+
+/* Portfolio Controls & Search */
+.portfolio-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.search-bar-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 15px 20px 15px 50px !important;
+  color: #fff !important;
+  outline: none !important;
+  transition: all 0.3s ease !important;
+  font-size: 13.5px !important;
+}
+
+.search-input:focus {
+  border-color: var(--orange-yellow-crayola) !important;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.12) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--orange-yellow-crayola);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.project-card-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+}
+
+/* Category Filter Pills (Projects and Resume tabs) */
+.filter-list {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 0 25px 0 !important;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: var(--light-gray-70) !important;
+  font-size: 13px !important;
+  padding: 8px 18px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  font-weight: 500 !important;
+}
+
+.filter-btn:hover {
+  color: #fff !important;
+  border-color: rgba(255, 215, 0, 0.2) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--orange-yellow-crayola), var(--vegas-gold)) !important;
+  color: #121213 !important;
+  font-weight: 600 !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25) !important;
+}
+
+/* Project Modal Popups */
+.project-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+  padding: 20px;
+  animation: modalFadeIn 0.3s ease forwards;
+}
+
+.project-modal-content {
+  background: rgba(30, 30, 31, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  position: relative;
+  animation: modalScaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.project-modal-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.project-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--orange-yellow-crayola);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.modal-close-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  transform: rotate(90deg) scale(1.08);
+}
+
+.modal-project-img {
+  width: 100%;
+  height: 250px;
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-category {
+  font-size: 11px;
+  color: var(--orange-yellow-crayola);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modal-title {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.modal-desc {
+  color: var(--light-gray);
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.modal-tech-section {
+  margin-bottom: 25px;
+}
+
+.modal-tech-section h4 {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.modal-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal-links {
+  display: flex;
+  gap: 15px;
+}
+
+.modal-btn-primary {
+  flex: 1;
+  text-decoration: none;
+}
+
+.modal-btn-secondary {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--light-gray) !important;
+}
+
+.modal-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #fff !important;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScaleIn {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+
 
 
 

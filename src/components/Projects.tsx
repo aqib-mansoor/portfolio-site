@@ -1,15 +1,17 @@
 import React from 'react';
-
-interface Project {
-  title: string;
-  category: string;
-  desc: string;
-  image: string;
-  link: string;
-  tech: { name: string; className: string }[];
-}
+import { usePortfolioStore } from '../store/usePortfolioStore';
+import type { Project } from '../store/usePortfolioStore';
 
 export const Projects: React.FC = () => {
+  const searchQuery = usePortfolioStore((state) => state.searchQuery);
+  const setSearchQuery = usePortfolioStore((state) => state.setSearchQuery);
+  
+  const activeCategory = usePortfolioStore((state) => state.activeCategory);
+  const setActiveCategory = usePortfolioStore((state) => state.setActiveCategory);
+  
+  const activeProject = usePortfolioStore((state) => state.activeProject);
+  const setActiveProject = usePortfolioStore((state) => state.setActiveProject);
+
   const projectList: Project[] = [
     {
       title: "Nexus Crypto Hub",
@@ -64,42 +66,16 @@ export const Projects: React.FC = () => {
       ]
     },
     {
-      title: "Admin Dashboard",
-      category: "Web Development",
-      desc: "Central administrative command center for platform analytics, user verification, order dispatching, and system configurations.",
-      image: "/assets/images/project17.png",
-      link: "https://foodie-express-admin-panel.vercel.app",
-      tech: [
-        { name: "React", className: "react" },
-        { name: "Tailwind CSS", className: "tailwind" },
-        { name: "Firebase", className: "firebase" },
-        { name: "TypeScript", className: "api" }
-      ]
-    },
-    {
       title: "Apply Daddy",
       category: "Web Development",
-      desc: "Sleek automated job application assistant and tracker using React, Laravel backend APIs, and custom integrations.",
+      desc: "Job application auto-filler extension and progress tracker that automates form completions on major career portals.",
       image: "/assets/images/project18.png",
-      link: "https://apply-daddy.vercel.app",
-      tech: [
-        { name: "React", className: "react" },
-        { name: "Firebase", className: "firebase" },
-        { name: "TypeScript", className: "api" },
-        { name: "GSAP", className: "laravel" }
-      ]
-    },
-    {
-      title: "Bannu Gul BP Restaurant",
-      category: "Web Development",
-      desc: "Interactive online restaurant ordering system with digital menu selection, custom checkout, and order confirmations.",
-      image: "/assets/images/project12.png",
-      link: "https://bannu-gul-customer-web.vercel.app/",
+      link: "https://apply-daddy-eight.vercel.app/",
       tech: [
         { name: "React", className: "react" },
         { name: "Tailwind CSS", className: "tailwind" },
-        { name: "REST API", className: "api" },
-        { name: "Laravel", className: "laravel" }
+        { name: "Node.js", className: "node" },
+        { name: "Express", className: "api" }
       ]
     },
     {
@@ -229,6 +205,16 @@ export const Projects: React.FC = () => {
     }
   ];
 
+  const categories = ['all', 'Web Development', 'Web Design'];
+
+  const filteredProjects = projectList.filter((project) => {
+    const matchesCategory = activeCategory === 'all' || project.category === activeCategory;
+    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          project.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          project.tech.some(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <article className="portfolio active" data-page="projects">
       <header>
@@ -236,10 +222,46 @@ export const Projects: React.FC = () => {
       </header>
 
       <section className="projects">
+        {/* Search & Filter Controls */}
+        <div className="portfolio-controls">
+          {/* Search Input */}
+          <div className="search-bar-wrapper">
+            <input
+              type="text"
+              placeholder="Search projects by title, description or technology..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="form-input search-input"
+              aria-label="Search projects"
+            />
+            <span className="search-icon">
+              <ion-icon name="search-outline"></ion-icon>
+            </span>
+          </div>
+
+          {/* Category Filter Pills */}
+          <ul className="filter-list">
+            {categories.map((category) => (
+              <li key={category} className="filter-item">
+                <button
+                  className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category === 'all' ? 'All' : category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Projects Grid */}
         <ul className="project-list">
-          {projectList.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <li key={index} className="project-item active reveal" data-filter-item data-category={project.category.toLowerCase()}>
-              <a href={project.link} target={project.link !== '#' ? "_blank" : undefined} rel="noopener noreferrer">
+              <button 
+                onClick={() => setActiveProject(project)} 
+                className="project-card-btn"
+              >
                 <figure className="project-img">
                   <img src={project.image} alt={project.title} />
                 </figure>
@@ -255,7 +277,7 @@ export const Projects: React.FC = () => {
                     ))}
                   </div>
                 </div>
-              </a>
+              </button>
             </li>
           ))}
         </ul>

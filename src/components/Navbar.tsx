@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
+import { usePortfolioStore } from '../store/usePortfolioStore';
 
-interface NavbarProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-}
+export const Navbar: React.FC = () => {
+  const activeTab = usePortfolioStore((state) => state.activeTab);
+  const setActiveTab = usePortfolioStore((state) => state.setActiveTab);
 
-export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   const tabs = [
     { id: 'about', label: 'About', icon: 'person-outline' },
     { id: 'resume', label: 'Resume', icon: 'document-text-outline' },

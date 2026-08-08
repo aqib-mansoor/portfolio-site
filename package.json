@@ -12,7 +12,8 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",

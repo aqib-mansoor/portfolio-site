@@ -8,9 +8,12 @@ import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Toast } from './components/Toast';
 import { Chatbot } from './components/Chatbot';
+import { usePortfolioStore } from './store/usePortfolioStore';
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('about');
+  const activeTab = usePortfolioStore((state) => state.activeTab);
+  const activeProject = usePortfolioStore((state) => state.activeProject);
+  const setActiveProject = usePortfolioStore((state) => state.setActiveProject);
   const [showToast, setShowToast] = useState<boolean>(false);
 
   const handleSuccess = () => {
@@ -71,7 +74,7 @@ export const App: React.FC = () => {
     <main>
       <Sidebar />
       <div className="main-content">
-        <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Navbar />
         <div
           id={`${activeTab}-panel`}
           role="tabpanel"
@@ -83,7 +86,76 @@ export const App: React.FC = () => {
         </div>
       </div>
       <Toast show={showToast} />
-      <Chatbot setActiveTab={setActiveTab} />
+      <Chatbot />
+
+      {/* Project Detail Modal rendered at root viewport level */}
+      {activeProject && (
+        <div 
+          className="modal-container active project-modal-overlay" 
+          onClick={() => setActiveProject(null)}
+        >
+          <div 
+            className="project-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button 
+              className="modal-close-btn"
+              onClick={() => setActiveProject(null)}
+              aria-label="Close details"
+            >
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            {/* Modal Image */}
+            <figure className="modal-project-img">
+              <img src={activeProject.image} alt={activeProject.title} />
+            </figure>
+
+            {/* Modal Content */}
+            <span className="modal-category">
+              {activeProject.category}
+            </span>
+            <h3 className="modal-title">{activeProject.title}</h3>
+
+            <p className="modal-desc">
+              {activeProject.desc}
+            </p>
+
+            <div className="modal-tech-section">
+              <h4>Technologies Used:</h4>
+              <div className="modal-tech-list">
+                {activeProject.tech.map((t, idx) => (
+                  <span key={idx} className={`tech-badge ${t.className}`}>
+                    {t.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Links */}
+            <div className="modal-links">
+              {activeProject.link !== '#' && (
+                <a 
+                  href={activeProject.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="form-btn modal-btn-primary"
+                >
+                  <ion-icon name="globe-outline"></ion-icon>
+                  <span>Live Preview</span>
+                </a>
+              )}
+              <button 
+                className="form-btn modal-btn-secondary"
+                onClick={() => setActiveProject(null)}
+              >
+                <span>Close Details</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };
