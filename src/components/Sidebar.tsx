@@ -75,7 +75,7 @@ export const Sidebar: React.FC = () => {
             </div>
             <div className="contact-info">
               <p className="contact-title">Location</p>
-              <address>Near RMU, Tipu Road, Rawalpindi</address>
+              <address>Rawalpindi, Pakistan</address>
             </div>
           </li>
         </ul>

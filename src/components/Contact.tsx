@@ -116,7 +116,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
         <section className="mapbox reveal" data-mapbox>
           <figure>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3322.938641470626!2d73.06852771761844!3d33.60689646724423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df94bdb2244bf7%3A0xa7cf79779264a9e1!2sAria%20Mohalla%20Marir%2C%20Rawalpindi%2C%20Punjab%2046000%2C%20Pakistan!5e0!3m2!1sen!2s!4v1727174979419!5m2!1sen!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3321.3087369324546!2d73.07222147618037!3d33.649179973312984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df95240212e2b9%3A0x7d013e8d9c57d77b!2sBlock%20D%20Satellite%20Town%2C%20Rawalpindi%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1727174979419!5m2!1sen!2s"
               width="600"
               height="450"
               style={{ border: 0 }}
