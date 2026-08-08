@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SkillsSphere } from './SkillsSphere';
 
 interface SkillItem {
   name: string;

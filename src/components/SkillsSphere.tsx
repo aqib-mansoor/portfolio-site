@@ -48,7 +48,6 @@ export const SkillsSphere: React.FC = () => {
     let angleY = 0.003;
 
     // Mouse interaction to speed up rotation
-    const mouse = { x: 0, y: 0 };
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       const mx = e.clientX - rect.left - width / 2;
