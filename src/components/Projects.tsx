@@ -209,6 +209,26 @@ export const Projects: React.FC = () => {
     return activeCategory === 'all' || project.category === activeCategory;
   });
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = -(y - centerY) / 15; // divisor adjusts tilt sensitivity
+    const rotateY = (x - centerX) / 15;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    card.style.transition = 'transform 0.1s ease';
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    card.style.transition = 'transform 0.5s ease-out';
+  };
+
   return (
     <article className="portfolio active" data-page="projects">
       <header>
@@ -236,7 +256,14 @@ export const Projects: React.FC = () => {
         {/* Projects Grid */}
         <ul className="project-list">
           {filteredProjects.map((project, index) => (
-            <li key={index} className="project-item active reveal" data-filter-item data-category={project.category.toLowerCase()}>
+            <li 
+              key={index} 
+              className="project-item active reveal" 
+              data-filter-item 
+              data-category={project.category.toLowerCase()}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
               <button 
                 onClick={() => setActiveProject(project)} 
                 className="project-card-btn"

@@ -1,18 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-interface Skill {
+interface SkillItem {
+  name: string;
+  color: string;
+  level: number; // skill percentage level (0-100)
+}
+
+interface SkillCategory {
   title: string;
   subtitle: string;
   glowColor: string;
   themeColor: string;
   icon: string;
-  items: { name: string; color: string }[];
+  items: SkillItem[];
 }
+
+const ProgressBar: React.FC<{ name: string; color: string; level: number }> = ({ name, color, level }) => {
+  const [width, setWidth] = useState<number>(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setWidth(level);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [level]);
+
+  return (
+    <div className="skills-item" ref={ref} style={{ marginBottom: '18px', width: '100%' }}>
+      <div className="skill" style={{ width: '100%' }}>
+        <div className="title-wrapper" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span className="tag-dot" style={{ background: color, display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%' }}></span>
+            <span style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 500 }}>{name}</span>
+          </div>
+          <data style={{ color: 'var(--light-gray-70)', fontSize: '0.9rem' }}>{level}%</data>
+        </div>
+        <div className="skill-progress-bg" style={{ background: 'var(--jet)', height: '6px', borderRadius: '10px', overflow: 'hidden' }}>
+          <div
+            className="skill-progress-fill"
+            style={{
+              width: `${width}%`,
+              height: '100%',
+              background: 'var(--text-gradient-yellow)',
+              borderRadius: 'inherit',
+              transition: 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          ></div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Resume: React.FC = () => {
   const [activeSkillCategory, setActiveSkillCategory] = useState<string>('All');
 
-  const skills: Skill[] = [
+  const skills: SkillCategory[] = [
     {
       title: "Frontend Development",
       subtitle: "Interactive UI & SPAs",
@@ -20,13 +75,13 @@ export const Resume: React.FC = () => {
       themeColor: "#CCFF00",
       icon: "desktop-outline",
       items: [
-        { name: "React", color: "#61dafb" },
-        { name: "TypeScript", color: "#3178c6" },
-        { name: "Redux", color: "#764abc" },
-        { name: "Tailwind CSS", color: "#38bdf8" },
-        { name: "Framer Motion", color: "#ff007f" },
-        { name: "Shadcn UI", color: "#ffffff" },
-        { name: "GSAP", color: "#88ce02" }
+        { name: "React", color: "#61dafb", level: 95 },
+        { name: "TypeScript", color: "#3178c6", level: 90 },
+        { name: "Redux", color: "#764abc", level: 85 },
+        { name: "Tailwind CSS", color: "#38bdf8", level: 95 },
+        { name: "Framer Motion", color: "#ff007f", level: 80 },
+        { name: "Shadcn UI", color: "#ffffff", level: 90 },
+        { name: "GSAP", color: "#88ce02", level: 75 }
       ]
     },
     {
@@ -36,11 +91,11 @@ export const Resume: React.FC = () => {
       themeColor: "#CCFF00",
       icon: "phone-portrait-outline",
       items: [
-        { name: "React Native", color: "#61dafb" },
-        { name: "Expo", color: "#ffffff" },
-        { name: "Android (Java/Kotlin)", color: "#3ddc84" },
-        { name: "Android Studio", color: "#4285f4" },
-        { name: "iOS", color: "#a2aaad" }
+        { name: "React Native", color: "#61dafb", level: 90 },
+        { name: "Expo", color: "#ffffff", level: 85 },
+        { name: "Android (Java/Kotlin)", color: "#3ddc84", level: 80 },
+        { name: "Android Studio", color: "#4285f4", level: 85 },
+        { name: "iOS", color: "#a2aaad", level: 75 }
       ]
     },
     {
@@ -50,12 +105,14 @@ export const Resume: React.FC = () => {
       themeColor: "#CCFF00",
       icon: "server-outline",
       items: [
-        { name: "Laravel", color: "#ff2d20" },
-        { name: "PHP", color: "#777bb4" },
-        { name: "Node.js", color: "#339933" },
-        { name: "REST API", color: "#00bcd4" },
-        { name: "Prisma", color: "#2d3748" },
-        { name: "Mongoose", color: "#880000" }
+        { name: "Laravel", color: "#ff2d20", level: 92 },
+        { name: "PHP", color: "#777bb4", level: 88 },
+        { name: "Node.js", color: "#339933", level: 85 },
+        { name: "Firebase", color: "#ffcb2b", level: 85 },
+        { name: "Supabase", color: "#3ecf8e", level: 82 },
+        { name: "REST API", color: "#00bcd4", level: 95 },
+        { name: "Prisma", color: "#2d3748", level: 80 },
+        { name: "Mongoose", color: "#880000", level: 82 }
       ]
     },
     {
@@ -65,9 +122,10 @@ export const Resume: React.FC = () => {
       themeColor: "#CCFF00",
       icon: "cube-outline",
       items: [
-        { name: "MongoDB", color: "#47a248" },
-        { name: "MySQL", color: "#00758f" },
-        { name: "SQL Server", color: "#cc292b" }
+        { name: "MongoDB", color: "#47a248", level: 88 },
+        { name: "Firestore", color: "#ffca2b", level: 85 },
+        { name: "MySQL", color: "#00758f", level: 90 },
+        { name: "SQL Server", color: "#cc292b", level: 80 }
       ]
     },
     {
@@ -77,13 +135,13 @@ export const Resume: React.FC = () => {
       themeColor: "#CCFF00",
       icon: "settings-outline",
       items: [
-        { name: "AWS", color: "#ff9900" },
-        { name: "Git", color: "#f05032" },
-        { name: "GitHub", color: "#ffffff" },
-        { name: "VS Code", color: "#007acc" },
-        { name: "Vercel", color: "#ffffff" },
-        { name: "Render", color: "#46e3b7" },
-        { name: "Postman", color: "#ff6c37" }
+        { name: "AWS", color: "#ff9900", level: 75 },
+        { name: "Git", color: "#f05032", level: 90 },
+        { name: "GitHub", color: "#ffffff", level: 92 },
+        { name: "VS Code", color: "#007acc", level: 95 },
+        { name: "Vercel", color: "#ffffff", level: 90 },
+        { name: "Render", color: "#46e3b7", level: 85 },
+        { name: "Postman", color: "#ff6c37", level: 90 }
       ]
     }
   ];
@@ -168,17 +226,19 @@ export const Resume: React.FC = () => {
                 '--theme-color': skill.themeColor
               } as React.CSSProperties}
             >
-              <div className="skill-header">
+              <div className="skill-header" style={{ marginBottom: '20px' }}>
                 <ion-icon name={skill.icon} className="gradient-icon"></ion-icon>
-                <h4>{skill.title}</h4>
+                <h4 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#fff' }}>{skill.title}</h4>
               </div>
-              <span className="skill-subtitle">{skill.subtitle}</span>
-              <div className="skill-items">
+              <span className="skill-subtitle" style={{ display: 'block', fontSize: '0.85rem', color: 'var(--light-gray-70)', marginBottom: '20px' }}>{skill.subtitle}</span>
+              <div className="skill-progress-list" style={{ width: '100%' }}>
                 {skill.items.map((item, idx) => (
-                  <span key={idx} className="skill-tag">
-                    <span className="tag-dot" style={{ background: item.color }}></span>
-                    {item.name}
-                  </span>
+                  <ProgressBar
+                    key={idx}
+                    name={item.name}
+                    color={item.color}
+                    level={item.level}
+                  />
                 ))}
               </div>
             </div>

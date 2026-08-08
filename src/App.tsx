@@ -8,6 +8,7 @@ import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Toast } from './components/Toast';
 import { Chatbot } from './components/Chatbot';
+import { CanvasParticles } from './components/CanvasParticles';
 import { usePortfolioStore } from './store/usePortfolioStore';
 
 export const App: React.FC = () => {
@@ -72,15 +73,18 @@ export const App: React.FC = () => {
 
   return (
     <main>
+      <CanvasParticles />
       <Sidebar />
       <div className="main-content">
         <Navbar />
         <div
+          key={activeTab}
           id={`${activeTab}-panel`}
           role="tabpanel"
           aria-labelledby={`${activeTab}-tab`}
           tabIndex={0}
           style={{ outline: 'none' }}
+          className="tab-panel-animate"
         >
           {renderActiveComponent()}
         </div>
