@@ -7,7 +7,6 @@ export const Projects: React.FC = () => {
   const activeCategory = usePortfolioStore((state) => state.activeCategory);
   const setActiveCategory = usePortfolioStore((state) => state.setActiveCategory);
   
-  const activeProject = usePortfolioStore((state) => state.activeProject);
   const setActiveProject = usePortfolioStore((state) => state.setActiveProject);
 
   const projectList: Project[] = [

@@ -62,7 +62,7 @@ export const ParticleTrail: React.FC = () => {
     const updateAndDraw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((p, idx) => {
+      particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         p.alpha -= 0.02; // Fades out
