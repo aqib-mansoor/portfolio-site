@@ -24,6 +24,35 @@ interface ChatbotProps {
   setActiveTab?: (tab: string) => void;
 }
 
+const renderMessageText = (text: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  return parts.map((part, index) => {
+    if (part.match(urlRegex)) {
+      let url = part;
+      let suffix = '';
+      if (url.endsWith('.') || url.endsWith(',')) {
+        suffix = url.slice(-1);
+        url = url.slice(0, -1);
+      }
+      return (
+        <React.Fragment key={index}>
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#ffdb70', textDecoration: 'underline', fontWeight: '500' }}
+          >
+            {url}
+          </a>
+          {suffix}
+        </React.Fragment>
+      );
+    }
+    return part;
+  });
+};
+
 export const Chatbot: React.FC<ChatbotProps> = ({ setActiveTab }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Default to muted so audio doesn't startle
@@ -413,7 +442,7 @@ Keep your answers professional, friendly, and concise. Short answers are preferr
           <div className="chat-messages">
             {messages.map((msg) => (
               <div key={msg.id} className={`message-bubble ${msg.sender}`}>
-                <p className="message-text" style={{ whiteSpace: 'pre-line' }}>{msg.text}</p>
+                <p className="message-text" style={{ whiteSpace: 'pre-line' }}>{renderMessageText(msg.text)}</p>
                 <span className="message-time">
                   {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
