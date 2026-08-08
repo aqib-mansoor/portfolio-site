@@ -18,7 +18,6 @@ const StatItem: React.FC<StatItemProps> = ({ target, label, suffix = '', icon })
         const [entry] = entries;
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          let start = 0;
           const duration = 1500; // ms
           const startTime = performance.now();
 
