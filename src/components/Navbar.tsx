@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 
 interface NavbarProps {
   activeTab: string;
@@ -14,7 +14,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
     { id: 'contact', label: 'Contact' }
   ];
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tabRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
@@ -40,46 +39,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
     }, 0);
   };
 
-  // Close menu on ESC key press
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsMenuOpen(false);
-      }
-    };
-    if (isMenuOpen) {
-      window.addEventListener('keydown', handleEscape);
-    }
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [isMenuOpen]);
-
-  const activeTabLabel = tabs.find(tab => tab.id === activeTab)?.label || 'Menu';
-
   return (
     <nav className="navbar" aria-label="Main Navigation">
-      {/* Mobile Backdrop */}
-      {isMenuOpen && (
-        <div 
-          className="navbar-backdrop" 
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
-
-      {/* Menu Toggle Trigger (Visible on Mobile/Tablet) */}
-      <button
-        className="navbar-toggle"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-expanded={isMenuOpen}
-        aria-controls="navbar-menu-list"
-        aria-label="Toggle Navigation Menu"
-      >
-        <span className="navbar-toggle-text">{activeTabLabel}</span>
-        <ion-icon name={isMenuOpen ? "close-outline" : "menu-outline"} aria-hidden="true"></ion-icon>
-      </button>
-
       <ul 
         id="navbar-menu-list"
-        className={`navbar-list ${isMenuOpen ? 'open' : ''}`} 
+        className="navbar-list" 
         role="tablist"
       >
         {tabs.map((tab, index) => (
@@ -90,11 +54,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
               aria-selected={activeTab === tab.id}
               aria-controls={`${tab.id}-panel`}
               id={`${tab.id}-tab`}
-              tabIndex={activeTab === tab.id ? 0 : (isMenuOpen ? 0 : -1)}
+              tabIndex={activeTab === tab.id ? 0 : -1}
               className={`navbar-link ${activeTab === tab.id ? 'active' : ''}`}
               onClick={() => {
                 setActiveTab(tab.id);
-                setIsMenuOpen(false);
                 window.scrollTo(0, 0);
               }}
               onKeyDown={(e) => handleKeyDown(e, index)}
