@@ -4,6 +4,16 @@ export interface ContributionDay {
   level: number;
 }
 
+export interface GitHubActivityEvent {
+  id: string;
+  type: string;
+  repoName: string;
+  repoUrl: string;
+  createdAt: string;
+  commits: { message: string; sha: string }[];
+  action?: string;
+}
+
 export interface GitHubStats {
   username: string;
   avatarUrl: string;
@@ -209,5 +219,37 @@ export const fetchGitHubStats = async (username: string): Promise<GitHubStats> =
   } catch (err) {
     console.warn('GitHub API fetch failed or rate-limited. Serving cached/default metrics.', err);
     return defaultStats;
+  }
+};
+
+export const fetchGitHubEvents = async (username: string): Promise<GitHubActivityEvent[]> => {
+  try {
+    const res = await fetch(`https://api.github.com/users/${username}/events?per_page=10`);
+    if (!res.ok) throw new Error('Failed to fetch events');
+    const events = await res.json();
+    
+    return events.map((event: any) => {
+      const commits = event.payload?.commits?.map((c: any) => ({
+        message: c.message,
+        sha: c.sha.substring(0, 7)
+      })) || [];
+
+      return {
+        id: event.id,
+        type: event.type,
+        repoName: event.repo.name,
+        repoUrl: `https://github.com/${event.repo.name}`,
+        createdAt: new Date(event.created_at).toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        }),
+        commits,
+        action: event.payload?.action
+      };
+    });
+  } catch (err) {
+    console.warn('Could not fetch real GitHub activity events.', err);
+    return [];
   }
 };

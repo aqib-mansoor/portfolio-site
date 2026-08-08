@@ -1,55 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { fetchGitHubStats } from '../utils/githubApi';
-import type { GitHubStats } from '../utils/githubApi';
-
-interface TechNode {
-  id: string;
-  label: string;
-  category: 'frontend' | 'backend' | 'database' | 'mobile' | 'devops';
-  color: string;
-  connections: string[];
-}
-
-const TECH_NODES: TechNode[] = [
-  { id: 'react', label: 'React', category: 'frontend', color: '#61dafb', connections: ['ts', 'redux', 'reactnative', 'tailwind'] },
-  { id: 'ts', label: 'TypeScript', category: 'frontend', color: '#3178c6', connections: ['react', 'node', 'reactnative'] },
-  { id: 'redux', label: 'Redux', category: 'frontend', color: '#764abc', connections: ['react'] },
-  { id: 'tailwind', label: 'Tailwind CSS', category: 'frontend', color: '#38bdf8', connections: ['react'] },
-  
-  { id: 'laravel', label: 'Laravel', category: 'backend', color: '#ff2d20', connections: ['php', 'mysql', 'redis'] },
-  { id: 'php', label: 'PHP', category: 'backend', color: '#777bb4', connections: ['laravel', 'mysql'] },
-  { id: 'node', label: 'Node.js', category: 'backend', color: '#339933', connections: ['ts', 'mongodb', 'redis'] },
-  
-  { id: 'reactnative', label: 'React Native', category: 'mobile', color: '#61dafb', connections: ['react', 'ts'] },
-  { id: 'flutter', label: 'Flutter', category: 'mobile', color: '#02569B', connections: ['firebase'] },
-
-  { id: 'mongodb', label: 'MongoDB', category: 'database', color: '#47a248', connections: ['node'] },
-  { id: 'mysql', label: 'MySQL', category: 'database', color: '#00758f', connections: ['laravel', 'php'] },
-  { id: 'postgres', label: 'PostgreSQL', category: 'database', color: '#4169E1', connections: ['laravel', 'node'] },
-  { id: 'redis', label: 'Redis', category: 'database', color: '#DC382D', connections: ['laravel', 'node'] },
-
-  { id: 'aws', label: 'AWS', category: 'devops', color: '#ff9900', connections: ['laravel', 'node', 'github'] },
-  { id: 'github', label: 'GitHub', category: 'devops', color: '#ffffff', connections: ['aws', 'react', 'laravel'] },
-];
+import { fetchGitHubStats, fetchGitHubEvents } from '../utils/githubApi';
+import type { GitHubStats, GitHubActivityEvent } from '../utils/githubApi';
 
 export const Analytics: React.FC = () => {
   const [gitStats, setGitStats] = useState<GitHubStats | null>(null);
+  const [gitEvents, setGitEvents] = useState<GitHubActivityEvent[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [activeNode, setActiveNode] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
-    fetchGitHubStats('aqib-mansoor')
-      .then((data) => {
-        setGitStats(data);
+    Promise.all([
+      fetchGitHubStats('aqib-mansoor'),
+      fetchGitHubEvents('aqib-mansoor')
+    ])
+      .then(([statsData, eventsData]) => {
+        setGitStats(statsData);
+        setGitEvents(eventsData);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
-
-  const handleNodeClick = (id: string) => {
-    setActiveNode(activeNode === id ? null : id);
-  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = e.currentTarget;
@@ -74,55 +43,6 @@ export const Analytics: React.FC = () => {
     const card = e.currentTarget;
     card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     card.style.transition = 'transform 0.5s ease-out';
-  };
-
-  const filteredNodes = selectedCategory === 'all'
-    ? TECH_NODES
-    : TECH_NODES.filter(n => n.category === selectedCategory);
-
-  const getHighlightStyle = (node: TechNode): React.CSSProperties => {
-    const baseStyle: React.CSSProperties = {
-      padding: '14px 10px',
-      borderRadius: '12px',
-      color: '#fff',
-      cursor: 'pointer',
-      fontSize: '0.85rem',
-      fontWeight: '600',
-      textAlign: 'center',
-      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-      outline: 'none',
-      border: '1px solid var(--border-color, rgba(255,255,255,0.06))',
-      background: 'var(--card-bg, rgba(255,255,255,0.02))',
-    };
-
-    if (!activeNode) return baseStyle;
-
-    if (activeNode === node.id) {
-      return {
-        ...baseStyle,
-        border: `1px solid ${node.color}`,
-        background: `${node.color}15`,
-        boxShadow: `0 0 15px ${node.color}30`,
-        transform: 'scale(1.05)',
-      };
-    }
-
-    const activeDetails = TECH_NODES.find(n => n.id === activeNode);
-    const isConnected = activeDetails && (activeDetails.connections.includes(node.id) || node.connections.includes(activeNode));
-
-    if (isConnected) {
-      return {
-        ...baseStyle,
-        border: `1px solid ${node.color}80`,
-        background: `${node.color}08`,
-        boxShadow: `0 0 8px ${node.color}15`,
-      };
-    }
-
-    return {
-      ...baseStyle,
-      opacity: 0.35,
-    };
   };
 
   return (
@@ -261,6 +181,71 @@ export const Analytics: React.FC = () => {
           </ul>
         )}
       </section>
+
+      {/* Live GitHub Profile Activity Events */}
+      <section className="service" style={{ marginTop: '35px' }}>
+        <h3 className="h3 service-title">Live Commit & Activity Stream</h3>
+        <p className="service-item-text" style={{ marginBottom: '20px', fontSize: '0.85rem', lineHeight: '1.5' }}>
+          Real-time activity logs pulled from public hooks.
+        </p>
+
+        {gitEvents.length > 0 ? (
+          <ul className="service-list" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            {gitEvents.map((event) => (
+              <li 
+                key={event.id}
+                className="service-item reveal active"
+                style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', gap: '15px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#fff', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '600' }}>
+                      <ion-icon name="git-commit-outline" style={{ color: 'var(--orange-yellow-crayola)', fontSize: '1.1rem' }}></ion-icon>
+                      {event.type === 'PushEvent' ? 'Pushed Commits to' : 'Activity on'}{' '}
+                      <a href={event.repoUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--orange-yellow-crayola)', textDecoration: 'underline' }}>
+                        {event.repoName.split('/')[1] || event.repoName}
+                      </a>
+                    </span>
+                    {event.commits && event.commits.length > 0 ? (
+                      <p className="service-item-text" style={{ fontSize: '0.8rem', margin: '4px 0 0 22px', color: 'var(--light-gray)', fontStyle: 'italic' }}>
+                        "{event.commits[0].message}"
+                      </p>
+                    ) : (
+                      <p className="service-item-text" style={{ fontSize: '0.8rem', margin: '4px 0 0 22px', color: 'var(--light-gray)', fontStyle: 'italic' }}>
+                        Repository action performed.
+                      </p>
+                    )}
+                    <span style={{ fontSize: '0.72rem', color: 'var(--light-gray)', opacity: 0.6, marginLeft: '22px', marginTop: '2px' }}>
+                      {event.createdAt}
+                    </span>
+                  </div>
+                  
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '5px' }}>
+                    <span style={{ 
+                      fontSize: '0.65rem', 
+                      color: 'var(--orange-yellow-crayola)', 
+                      background: 'rgba(255, 219, 112, 0.08)', 
+                      padding: '4px 8px', 
+                      borderRadius: '6px', 
+                      fontWeight: '600',
+                      border: '1px solid rgba(255, 219, 112, 0.15)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      {event.type.replace('Event', '')}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div style={{ padding: '20px', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.04)', textAlign: 'center' }}>
+            <span style={{ fontSize: '0.8rem', color: 'var(--light-gray)' }}>No recent public activities found.</span>
+          </div>
+        )}
+      </section>
+
     </article>
   );
 };
