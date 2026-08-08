@@ -51,16 +51,16 @@ const StatItem: React.FC<StatItemProps> = ({ target, label, suffix = '', icon })
   }, [target, hasAnimated]);
 
   return (
-    <div className="service-item stats-item" ref={ref}>
-      <div className="service-icon-box">
-        <ion-icon name={icon} style={{ fontSize: '32px', color: 'var(--orange-yellow-crayola)' }}></ion-icon>
+    <div className="service-item stats-item" ref={ref} style={{ display: 'flex', alignItems: 'center', gap: '15px' } as React.CSSProperties}>
+      <div className="service-icon-box" style={{ background: 'rgba(255, 219, 112, 0.08)', borderRadius: '12px', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' } as React.CSSProperties}>
+        <ion-icon name={icon} style={{ fontSize: '24px', color: 'var(--orange-yellow-crayola)' } as React.CSSProperties}></ion-icon>
       </div>
-      <div className="service-content-box">
-        <h4 className="h3 stats-number" style={{ fontSize: '2.2rem', fontWeight: '700', color: '#fff', marginBottom: '5px' }}>
+      <div className="service-content-box" style={{ textAlign: 'left' } as React.CSSProperties}>
+        <h4 className="h3 stats-number" style={{ fontSize: '1.6rem', fontWeight: '800', color: '#fff', marginBottom: '2px', lineHeight: '1.2' } as React.CSSProperties}>
           {count}
           {suffix}
         </h4>
-        <p className="service-item-text" style={{ fontSize: '0.85rem' }}>{label}</p>
+        <p className="service-item-text" style={{ fontSize: '0.78rem', margin: 0, opacity: 0.85 } as React.CSSProperties}>{label}</p>
       </div>
     </div>
   );
@@ -77,7 +77,7 @@ export const Stats: React.FC = () => {
   return (
     <section className="service" style={{ marginTop: '35px' }}>
       <h3 className="h3 service-title">Stats & Accomplishments</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '20px' }}>
+      <div className="stats-grid-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '15px' } as React.CSSProperties}>
         {statsData.map((stat, idx) => (
           <StatItem
             key={idx}

@@ -885,6 +885,14 @@ main {
   z-index: 1;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+
+.service-item.stats-item {
+  padding: 15px 18px;
 }
 
 .service-item:hover {
@@ -895,11 +903,14 @@ main {
 .service-item .service-icon-box {
   transform: translateZ(20px);
   transition: transform 0.35s ease;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .service-item .service-content-box {
   transform: translateZ(30px);
   transition: transform 0.35s ease;
+  text-align: left;
 }
 
 .service-item::after {
@@ -927,11 +938,7 @@ main {
   z-index: -1;
 }
 
-.service-icon-box { margin-bottom: 10px; }
-
-.service-icon-box img { margin: auto; }
-
-.service-content-box { text-align: center; }
+.service-icon-box img { margin: 0; }
 
 .service-item-title { margin-bottom: 7px; }
 
