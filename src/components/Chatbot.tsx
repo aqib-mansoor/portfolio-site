@@ -25,30 +25,93 @@ interface ChatbotProps {
 }
 
 const renderMessageText = (text: string) => {
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const parts = text.split(urlRegex);
+  // Regex to match markdown links: [Label](URL) or raw URLs
+  const tokenRegex = /(\[.*?\]\(https?:\/\/.*?\)|https?:\/\/[^\s]+)/g;
+  const parts = text.split(tokenRegex);
+
+  const getLinkLabel = (url: string) => {
+    const lowerUrl = url.toLowerCase();
+    if (lowerUrl.includes('github.com')) return 'GitHub Profile';
+    if (lowerUrl.includes('linkedin.com')) return 'LinkedIn Profile';
+    if (lowerUrl.includes('instagram.com')) return 'Instagram';
+    if (lowerUrl.includes('twitter.com') || lowerUrl.includes('x.com')) return 'Twitter';
+    
+    // For custom domains (e.g. foodie-express.vercel.app -> Foodie Express)
+    try {
+      const hostname = url.replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+      const namePart = hostname.split('.')[0];
+      if (namePart) {
+        return namePart
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+      }
+    } catch (e) {}
+    
+    return 'Visit Link';
+  };
+
   return parts.map((part, index) => {
-    if (part.match(urlRegex)) {
+    // Check if it is a markdown link: [Label](URL)
+    if (part.startsWith('[') && part.includes('](')) {
+      const match = part.match(/\[(.*?)\]\((.*?)\)/);
+      if (match) {
+        const label = match[1];
+        const url = match[2];
+        return (
+          <a
+            key={index}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ 
+              color: '#ffdb70', 
+              textDecoration: 'none', 
+              borderBottom: '1px dashed #ffdb70', 
+              fontWeight: '500',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}
+          >
+            {label} <ion-icon name="open-outline" style={{ fontSize: '11px', verticalAlign: 'middle' }}></ion-icon>
+          </a>
+        );
+      }
+    }
+    
+    // Check if it is a raw URL
+    if (part.match(/^https?:\/\//)) {
       let url = part;
       let suffix = '';
       if (url.endsWith('.') || url.endsWith(',')) {
         suffix = url.slice(-1);
         url = url.slice(0, -1);
       }
+      
       return (
         <React.Fragment key={index}>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: '#ffdb70', textDecoration: 'underline', fontWeight: '500' }}
+            style={{ 
+              color: '#ffdb70', 
+              textDecoration: 'none', 
+              borderBottom: '1px dashed #ffdb70', 
+              fontWeight: '500',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}
           >
-            {url}
+            {getLinkLabel(url)} <ion-icon name="open-outline" style={{ fontSize: '11px', verticalAlign: 'middle' }}></ion-icon>
           </a>
           {suffix}
         </React.Fragment>
       );
     }
+
     return part;
   });
 };
@@ -86,7 +149,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ setActiveTab }) => {
       label: '📞 Contact Details',
       queryText: 'How can I contact you?',
       keywords: ['contact', 'email', 'phone', 'call', 'message', 'reach', 'gmail', 'linkedin', 'github', 'hire'],
-      response: "You can reach Aqib via email at aqibmansoor40@gmail.com or call/WhatsApp at +92 318 5952411. He's also active on LinkedIn: https://www.linkedin.com/in/aqib248 and GitHub: https://github.com/aqib-mansoor"
+      response: "You can reach Aqib via email at aqibmansoor40@gmail.com or call/WhatsApp at +92 318 5952411. He's also active on [LinkedIn](https://www.linkedin.com/in/aqib248) and [GitHub](https://github.com/aqib-mansoor)!"
     },
     {
       label: '💼 Availability',
