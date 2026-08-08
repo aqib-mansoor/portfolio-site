@@ -7,11 +7,11 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   const tabs = [
-    { id: 'about', label: 'About' },
-    { id: 'resume', label: 'Resume' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'about', label: 'About', icon: 'person-outline' },
+    { id: 'resume', label: 'Resume', icon: 'document-text-outline' },
+    { id: 'experience', label: 'Experience', icon: 'briefcase-outline' },
+    { id: 'projects', label: 'Projects', icon: 'grid-outline' },
+    { id: 'contact', label: 'Contact', icon: 'mail-outline' }
   ];
 
   const tabRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
@@ -62,7 +62,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
               }}
               onKeyDown={(e) => handleKeyDown(e, index)}
             >
-              {tab.label}
+              <ion-icon name={tab.icon} class="nav-icon" aria-hidden="true"></ion-icon>
+              <span className="nav-label">{tab.label}</span>
             </button>
           </li>
         ))}

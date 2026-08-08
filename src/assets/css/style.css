@@ -801,6 +801,10 @@ main {
   position: relative;
 }
 
+.navbar-link .nav-icon {
+  display: none;
+}
+
 .navbar-link::after {
   content: "";
   position: absolute;
@@ -2749,6 +2753,75 @@ textarea.form-input::-webkit-resizer { display: none; }
   text-align: center;
   margin-top: 4px;
 }
+
+/* Premium Floating Bottom Navbar for mobile views */
+@media (max-width: 1023px) {
+  .navbar {
+    position: fixed !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: calc(100% - 24px) !important;
+    background: rgba(18, 18, 19, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .navbar-list {
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 6px 8px !important;
+    gap: 0 !important;
+    overflow-x: visible !important;
+  }
+
+  .navbar-item {
+    flex: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .navbar-link {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    font-size: 10px !important;
+    padding: 6px 4px !important;
+    color: var(--light-gray-70) !important;
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+    transition: all 0.25s ease !important;
+  }
+
+  .navbar-link .nav-icon {
+    display: block !important;
+    font-size: 20px !important;
+    color: var(--light-gray-70) !important;
+    transition: color 0.25s ease, transform 0.25s ease !important;
+  }
+
+  .navbar-link::after {
+    display: none !important; /* Remove bottom underline on mobile */
+  }
+
+  .navbar-link.active {
+    color: var(--orange-yellow-crayola) !important;
+  }
+
+  .navbar-link.active .nav-icon {
+    color: var(--orange-yellow-crayola) !important;
+    transform: translateY(-2px);
+  }
+}
+
 
 
 
