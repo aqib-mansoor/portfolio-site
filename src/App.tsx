@@ -17,6 +17,8 @@ export const App: React.FC = () => {
   const activeTab = usePortfolioStore((state) => state.activeTab);
   const activeProject = usePortfolioStore((state) => state.activeProject);
   const setActiveProject = usePortfolioStore((state) => state.setActiveProject);
+  const theme = usePortfolioStore((state) => state.theme);
+  const fluidCursorActive = usePortfolioStore((state) => state.fluidCursorActive);
   const [showToast, setShowToast] = useState<boolean>(false);
 
   const handleSuccess = () => {
@@ -25,6 +27,11 @@ export const App: React.FC = () => {
       setShowToast(false);
     }, 4000);
   };
+
+  useEffect(() => {
+    document.body.classList.remove('theme-abyss', 'theme-cyberpunk', 'theme-slate');
+    document.body.classList.add(`theme-${theme}`);
+  }, [theme]);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -77,7 +84,7 @@ export const App: React.FC = () => {
     <main>
       <CanvasParticles />
       <BackgroundOrbs />
-      <CursorFluid />
+      {fluidCursorActive && <CursorFluid />}
       <Sidebar />
       <div className="main-content">
         <Navbar />

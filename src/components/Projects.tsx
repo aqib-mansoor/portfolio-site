@@ -203,6 +203,31 @@ export const Projects: React.FC = () => {
   ];
 
   const categories = ['all', 'Web Development', 'Web Design'];
+  const soundActive = usePortfolioStore((state) => state.soundActive);
+
+  const playSound = (freq1: number, freq2: number, duration: number) => {
+    if (!soundActive) return;
+    try {
+      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const osc = Math.random() > 0.5 ? audioCtx.createOscillator() : audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq1, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq2, audioCtx.currentTime + duration);
+      
+      gainNode.gain.setValueAtTime(0.03, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      console.warn("Audio context not initialized", e);
+    }
+  };
 
   const filteredProjects = projectList.filter((project) => {
     return activeCategory === 'all' || project.category === activeCategory;
@@ -248,7 +273,10 @@ export const Projects: React.FC = () => {
               <li key={category} className="filter-item">
                 <button
                   className={`filter-btn ${activeCategory === category ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(category)}
+                  onClick={() => {
+                    setActiveCategory(category);
+                    playSound(440, 880, 0.12);
+                  }}
                 >
                   {category === 'all' ? 'All' : category}
                 </button>
@@ -269,7 +297,10 @@ export const Projects: React.FC = () => {
               onMouseLeave={handleMouseLeave}
             >
               <button 
-                onClick={() => setActiveProject(project)} 
+                onClick={() => {
+                  setActiveProject(project);
+                  playSound(600, 300, 0.15);
+                }} 
                 className="project-card-btn"
               >
                 <figure className="project-img">
