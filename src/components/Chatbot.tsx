@@ -9,6 +9,7 @@ interface Message {
 
 interface QuickReply {
   label: string;
+  queryText: string;
   keywords: string[];
   response: string;
 }
@@ -30,22 +31,26 @@ export const Chatbot: React.FC = () => {
   const quickReplies: QuickReply[] = [
     {
       label: '🚀 Core Skills',
-      keywords: ['skills', 'technologies', 'stack', 'languages', 'tools'],
+      queryText: 'What are your core skills?',
+      keywords: ['skills', 'technologies', 'stack', 'languages', 'tools', 'react', 'node', 'laravel', 'php', 'javascript', 'typescript', 'database', 'mysql', 'mongodb'],
       response: "Aqib is a Full-Stack developer. His core stack includes React, React Native, Node.js (Express), PHP (Laravel), and MySQL. He also works with TypeScript, TailwindCSS, and Cloud/API solutions!"
     },
     {
       label: '📞 Contact Details',
-      keywords: ['contact', 'email', 'phone', 'call', 'message', 'reach'],
-      response: "You can reach Aqib via email at aqibmansoor40@gmail.com or call/WhatsApp at +92 318 5952411. He's also active on LinkedIn: https://www.linkedin.com/in/aqib248"
+      queryText: 'How can I contact you?',
+      keywords: ['contact', 'email', 'phone', 'call', 'message', 'reach', 'gmail', 'linkedin', 'github'],
+      response: "You can reach Aqib via email at aqibmansoor40@gmail.com or call/WhatsApp at +92 318 5952411. He's also active on LinkedIn: https://www.linkedin.com/in/aqib248 and GitHub: https://github.com/aqib248"
     },
     {
       label: '💼 Availability',
-      keywords: ['freelance', 'work', 'hire', 'job', 'available', 'project'],
+      queryText: 'Are you available for work?',
+      keywords: ['freelance', 'work', 'hire', 'job', 'available', 'project', 'contract', 'opportunities'],
       response: "Yes! Aqib is currently open to full-time opportunities, freelance contracts, and web/mobile app development projects. Let's connect to discuss your ideas!"
     },
     {
       label: '📍 Location',
-      keywords: ['location', 'where', 'country', 'city', 'live'],
+      queryText: 'Where are you located?',
+      keywords: ['location', 'where', 'country', 'city', 'live', 'pakistan', 'rawalpindi'],
       response: "Aqib is based in Rawalpindi, Pakistan, and is comfortable working remotely with global clients across different time zones."
     }
   ];
@@ -70,27 +75,58 @@ export const Chatbot: React.FC = () => {
   const simulateBotResponse = (userText: string) => {
     setIsTyping(true);
 
-    // Analyze the message to find the best match
-    const cleanText = userText.toLowerCase();
-    let bestMatch: QuickReply | null = null;
+    const cleanText = userText.toLowerCase().trim();
 
-    for (const reply of quickReplies) {
-      const match = reply.keywords.some((keyword) => cleanText.includes(keyword));
-      if (match) {
-        bestMatch = reply;
-        break;
+    // 1. Greeting check
+    const greetings = ['hi', 'hello', 'hey', 'hola', 'greetings', 'morning', 'afternoon', 'sup', 'yo'];
+    const isGreeting = greetings.some(g => {
+      const regex = new RegExp(`\\b${g}\\b`, 'i');
+      return regex.test(cleanText);
+    });
+
+    // 2. Help check
+    const helpWords = ['help', 'what can you do', 'features', 'option', 'guide'];
+    const isHelp = helpWords.some(h => cleanText.includes(h));
+
+    // 3. Projects check
+    const projectWords = ['project', 'portfolio', 'work', 'apps', 'websites', 'nexus', 'crypto', 'foodie', 'delivery', 'apply daddy', 'bannu gul', 'show me'];
+    const isProjects = projectWords.some(p => cleanText.includes(p));
+
+    // 4. Experience check
+    const experienceWords = ['experience', 'resume', 'history', 'job', 'company', 'worked', 'background', 'career', 'education', 'studies'];
+    const isExperience = experienceWords.some(e => cleanText.includes(e));
+
+    let botResponse = '';
+
+    if (isGreeting) {
+      botResponse = "Hello! 👋 I'm Aqib's virtual assistant. I can tell you about his skills, projects, work experience, location, or how to contact him. How can I help you today?";
+    } else if (isHelp) {
+      botResponse = "I'm here to help you learn more about Aqib! You can ask me about:\n• 🚀 His Core Skills & Tech Stack\n• 💻 His Key Projects & portfolio details\n• 💼 His Availability for hire/freelance\n• 📍 His Location & timezone\n• 📞 How to Contact him";
+    } else if (isProjects) {
+      botResponse = "Aqib has built several impressive projects including:\n• Nexus Crypto Hub (Real-time tracking with GSAP & CoinGecko)\n• FoodieExpress (Full multi-vendor delivery system with Customer, Vendor, Rider & Admin apps)\n• Apply Daddy (Automated job tracker)\n• Bannu Gul BP (Restaurant system)\n\nYou can view details on the 'Projects' tab! Which one would you like to discuss?";
+    } else if (isExperience) {
+      botResponse = "Aqib is a skilled Full-Stack developer who builds responsive, fast, and easy-to-use applications. He has hands-on experience designing databases, building APIs, and launching apps. You can view his complete education and work history on the 'Resume' tab!";
+    } else {
+      // Check quick replies keywords
+      let bestMatch: QuickReply | null = null;
+      for (const reply of quickReplies) {
+        const match = reply.keywords.some((keyword) => cleanText.includes(keyword));
+        if (match) {
+          bestMatch = reply;
+          break;
+        }
       }
-    }
 
-    const botResponse = bestMatch 
-      ? bestMatch.response 
-      : "I'm a simple assistant, but I can tell you that Aqib is a Full-Stack developer specializing in React, Node.js, and Laravel. You can ask me about his 'skills', 'contact details', 'location', or 'availability'! Or feel free to drop him an email directly at aqibmansoor40@gmail.com.";
+      botResponse = bestMatch 
+        ? bestMatch.response 
+        : "I'm a simple assistant, but I can tell you that Aqib is a Full-Stack developer specializing in React, Node.js, and Laravel. You can ask me about his 'skills', 'projects', 'contact details', 'location', or 'availability'! Or feel free to email him directly at aqibmansoor40@gmail.com.";
+    }
 
     // Simulate typing delay
     setTimeout(() => {
       setIsTyping(false);
       handleSendMessage(botResponse, 'bot');
-    }, 1200);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -143,7 +179,7 @@ export const Chatbot: React.FC = () => {
               <button
                 key={index}
                 className="quick-reply-btn"
-                onClick={() => handleSendMessage(qr.label.replace(/[^a-zA-Z0-9\s/]/g, '').trim())}
+                onClick={() => handleSendMessage(qr.queryText)}
               >
                 {qr.label}
               </button>
