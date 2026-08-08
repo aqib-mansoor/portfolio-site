@@ -3026,65 +3026,120 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 .modal-category {
-  font-size: 11px;
-  color: var(--orange-yellow-crayola);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 500;
-  display: block;
-  margin-bottom: 6px;
+  font-size: 11px !important;
+  color: var(--orange-yellow-crayola) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  font-weight: 600 !important;
+  display: block !important;
+  margin-bottom: 8px !important;
 }
 
 .modal-title {
-  font-size: 24px;
-  color: #fff;
-  margin-bottom: 15px;
+  font-size: 26px !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  margin-top: 5px !important;
+  margin-bottom: 16px !important;
 }
 
 .modal-desc {
-  color: var(--light-gray);
-  font-size: 13.5px;
-  line-height: 1.6;
-  margin-bottom: 22px;
+  color: var(--light-gray) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  margin-bottom: 24px !important;
 }
 
 .modal-tech-section {
-  margin-bottom: 25px;
+  margin-bottom: 25px !important;
 }
 
 .modal-tech-section h4 {
-  color: #fff;
-  font-size: 14px;
-  margin-bottom: 10px;
-  font-weight: 500;
+  color: #fff !important;
+  font-size: 14px !important;
+  margin-bottom: 12px !important;
+  font-weight: 500 !important;
 }
 
-.modal-tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.modal-tech-list, .project-tech {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin-top: 10px !important;
+}
+
+/* Style for Tech Badge chips (capsules) */
+.tech-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--light-gray-70) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  transition: all 0.25s ease !important;
+}
+
+.tech-badge::before {
+  display: none !important; /* Force-remove any unwanted bullet points/dots from parent overrides */
+}
+
+.tech-badge:hover {
+  background: rgba(255, 215, 0, 0.05) !important;
+  border-color: rgba(255, 215, 0, 0.25) !important;
+  color: var(--orange-yellow-crayola) !important;
 }
 
 .modal-links {
-  display: flex;
-  gap: 15px;
+  display: flex !important;
+  gap: 15px !important;
+  margin-top: 28px !important;
 }
 
 .modal-btn-primary {
-  flex: 1;
-  text-decoration: none;
+  flex: 1 !important;
+  text-decoration: none !important;
+  background: linear-gradient(135deg, var(--orange-yellow-crayola), var(--vegas-gold)) !important;
+  color: #121213 !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 14px 20px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15) !important;
+  cursor: pointer !important;
+}
+
+.modal-btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.25) !important;
 }
 
 .modal-btn-secondary {
-  flex: 1;
+  flex: 1 !important;
   background: rgba(255, 255, 255, 0.02) !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
-  color: var(--light-gray) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 14px 20px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
 }
 
 .modal-btn-secondary:hover {
   background: rgba(255, 255, 255, 0.06) !important;
-  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-2px) !important;
 }
 
 @keyframes modalFadeIn {
