@@ -150,31 +150,33 @@ export const Analytics: React.FC = () => {
                 className="service-item reveal active" 
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                style={{ padding: '25px', display: 'flex', flexDirection: 'column', gap: '12px' }}
+                style={{ padding: '30px', display: 'flex', flexDirection: 'column', gap: '15px', justifyContent: 'space-between', minHeight: '260px' }}
               >
-                <div>
-                  <h4 className="h4 service-item-title" style={{ margin: 0, fontSize: '1rem', color: 'var(--orange-yellow-crayola)' }}>{repo.name}</h4>
-                  <p className="service-item-text" style={{ fontSize: '0.8rem', marginTop: '8px', lineHeight: '1.45' }}>{repo.description}</p>
+                <div style={{ width: '100%' }}>
+                  <h4 className="h4 service-item-title" style={{ margin: 0 }}>{repo.name}</h4>
+                  <p className="service-item-text" style={{ fontSize: '0.8rem', marginTop: '10px', lineHeight: '1.45', opacity: 0.85 }}>{repo.description}</p>
                 </div>
                 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginTop: '10px', width: '100%', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '15px' }}>
-                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '10px', textAlign: 'center' }}>
-                    <span style={{ fontSize: '1rem', fontWeight: 'bold', color: '#fff', display: 'block' }}>{repo.language}</span>
-                    <p style={{ fontSize: '0.65rem', margin: 0, color: 'var(--light-gray)', marginTop: '2px' }}>Language</p>
+                <div style={{ width: '100%' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px', marginTop: '10px', width: '100%', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px' }}>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '15px 5px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.01)', textAlign: 'center' }}>
+                      <span className="stats-number" style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--orange-yellow-crayola)', display: 'block', textTransform: 'capitalize' }}>{repo.language}</span>
+                      <p style={{ fontSize: '0.65rem', margin: 0, color: 'var(--light-gray)', marginTop: '4px' }}>Language</p>
+                    </div>
+                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '15px 5px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.01)', textAlign: 'center' }}>
+                      <span className="stats-number" style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--orange-yellow-crayola)', display: 'block' }}>{repo.stars}</span>
+                      <p style={{ fontSize: '0.65rem', margin: 0, color: 'var(--light-gray)', marginTop: '4px' }}>Stars</p>
+                    </div>
                   </div>
-                  <div style={{ background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '10px', textAlign: 'center' }}>
-                    <span style={{ fontSize: '1rem', fontWeight: 'bold', color: '#fff', display: 'block' }}>{repo.stars}</span>
-                    <p style={{ fontSize: '0.65rem', margin: 0, color: 'var(--light-gray)', marginTop: '2px' }}>Stars</p>
-                  </div>
-                </div>
 
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px', width: '100%' }}>
-                  {repo.url !== '#' && (
-                    <a href={repo.url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: 'var(--orange-yellow-crayola)', fontWeight: '600' }}>
-                      <span>Explore Repository</span>
-                      <ion-icon name="arrow-forward-outline"></ion-icon>
-                    </a>
-                  )}
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px', width: '100%' }}>
+                    {repo.url !== '#' && (
+                      <a href={repo.url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: 'var(--orange-yellow-crayola)', fontWeight: '600' }}>
+                        <span>Explore Repository</span>
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </li>
             ))}
