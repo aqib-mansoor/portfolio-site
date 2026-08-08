@@ -98,15 +98,6 @@ export const App: React.FC = () => {
             className="project-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
-            <button 
-              className="modal-close-btn"
-              onClick={() => setActiveProject(null)}
-              aria-label="Close details"
-            >
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
             {/* Modal Image */}
             <figure className="modal-project-img">
               <img src={activeProject.image} alt={activeProject.title} />
