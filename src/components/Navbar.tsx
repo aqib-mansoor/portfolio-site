@@ -35,6 +35,7 @@ export const Navbar: React.FC = () => {
     { id: 'resume', label: 'Resume', icon: 'document-text-outline' },
     { id: 'experience', label: 'Experience', icon: 'briefcase-outline' },
     { id: 'projects', label: 'Projects', icon: 'grid-outline' },
+    { id: 'analytics', label: 'Analytics', icon: 'bar-chart-outline' },
     { id: 'contact', label: 'Contact', icon: 'mail-outline' }
   ];
 

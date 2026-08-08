@@ -11,6 +11,7 @@ import { Chatbot } from './components/Chatbot';
 import { CanvasParticles } from './components/CanvasParticles';
 import { BackgroundOrbs } from './components/BackgroundOrbs';
 import { CursorFluid } from './components/CursorFluid';
+import { Analytics } from './components/Analytics';
 import { usePortfolioStore } from './store/usePortfolioStore';
 
 export const App: React.FC = () => {
@@ -73,6 +74,8 @@ export const App: React.FC = () => {
         return <Experience />;
       case 'projects':
         return <Projects />;
+      case 'analytics':
+        return <Analytics />;
       case 'contact':
         return <Contact onSuccess={handleSuccess} />;
       default:
