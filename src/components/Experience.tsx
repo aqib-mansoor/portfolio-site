@@ -83,13 +83,17 @@ export const Experience: React.FC = () => {
               key={index}
               className={`timeline-item reveal ${exp.type.toLowerCase().replace(' ', '-')}`}
             >
-              <h4 className="h4 timeline-item-title">
-                {exp.role} — {exp.company}
-                <span className={`exp-badge ${exp.type.toLowerCase().replace(' ', '-')}`}>
-                  {exp.type}
-                </span>
-              </h4>
-              <span className="timeline-item-date">{exp.duration}</span>
+              <div className="timeline-item-header">
+                <h4 className="h4 timeline-item-title">
+                  {exp.role} — {exp.company}
+                </h4>
+                <div className="timeline-item-meta">
+                  <span className={`exp-badge ${exp.type.toLowerCase().replace(' ', '-')}`}>
+                    {exp.type}
+                  </span>
+                  <span className="timeline-item-date">{exp.duration}</span>
+                </div>
+              </div>
               <div className="timeline-text">
                 <ul>
                   {exp.points.map((pt, idx) => (

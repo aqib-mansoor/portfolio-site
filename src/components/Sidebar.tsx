@@ -19,9 +19,15 @@ export const Sidebar: React.FC = () => {
           <p className="title">Web & App Developer</p>
         </div>
 
-        <button className="info_more-btn" onClick={toggleSidebar} data-sidebar-btn>
+        <button
+          className="info_more-btn"
+          onClick={toggleSidebar}
+          data-sidebar-btn
+          aria-label={isActive ? 'Hide Contacts' : 'Show Contacts'}
+          aria-expanded={isActive}
+        >
           <span>{isActive ? 'Hide Contacts' : 'Show Contacts'}</span>
-          <ion-icon name="chevron-down"></ion-icon>
+          <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
         </button>
       </div>
 
@@ -31,7 +37,7 @@ export const Sidebar: React.FC = () => {
         <ul className="contacts-list">
           <li className="contact-item">
             <div className="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
+              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
             </div>
             <div className="contact-info">
               <p className="contact-title">Email</p>
@@ -43,7 +49,7 @@ export const Sidebar: React.FC = () => {
 
           <li className="contact-item">
             <div className="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
+              <ion-icon name="phone-portrait-outline" aria-hidden="true"></ion-icon>
             </div>
             <div className="contact-info">
               <p className="contact-title">Phone</p>
@@ -55,7 +61,7 @@ export const Sidebar: React.FC = () => {
 
           <li className="contact-item">
             <div className="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
+              <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
             </div>
             <div className="contact-info">
               <p className="contact-title">Birthday</p>
@@ -65,7 +71,7 @@ export const Sidebar: React.FC = () => {
 
           <li className="contact-item">
             <div className="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
+              <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
             </div>
             <div className="contact-info">
               <p className="contact-title">Location</p>
@@ -78,26 +84,26 @@ export const Sidebar: React.FC = () => {
 
         <ul className="social-list">
           <li className="social-item">
-            <a href="https://www.linkedin.com/in/aqib248" className="social-link" target="_blank" rel="noopener noreferrer">
-              <ion-icon name="logo-linkedin"></ion-icon>
+            <a href="https://www.linkedin.com/in/aqib248" className="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+              <ion-icon name="logo-linkedin" aria-hidden="true"></ion-icon>
             </a>
           </li>
 
           <li className="social-item">
-            <a href="https://twitter.com/itzaqib248" className="social-link" target="_blank" rel="noopener noreferrer">
-              <ion-icon name="logo-twitter"></ion-icon>
+            <a href="https://twitter.com/itzaqib248" className="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
+              <ion-icon name="logo-twitter" aria-hidden="true"></ion-icon>
             </a>
           </li>
 
           <li className="social-item">
-            <a href="https://www.instagram.com/_aqib_15" className="social-link" target="_blank" rel="noopener noreferrer">
-              <ion-icon name="logo-instagram"></ion-icon>
+            <a href="https://www.instagram.com/_aqib_15" className="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+              <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
             </a>
           </li>
 
           <li className="social-item">
-            <a href="https://github.com/aqib-mansoor" className="social-link" target="_blank" rel="noopener noreferrer">
-              <ion-icon name="logo-github"></ion-icon>
+            <a href="https://github.com/aqib-mansoor" className="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+              <ion-icon name="logo-github" aria-hidden="true"></ion-icon>
             </a>
           </li>
         </ul>

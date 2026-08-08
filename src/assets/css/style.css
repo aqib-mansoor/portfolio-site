@@ -349,17 +349,17 @@
 
   /* solid */
 
-  --jet: hsl(0, 0%, 22%);
-  --onyx: hsl(240, 1%, 17%);
-  --eerie-black-1: hsl(240, 2%, 13%);
-  --eerie-black-2: hsl(240, 2%, 12%);
-  --smoky-black: hsl(0, 0%, 7%);
+  --jet: hsl(240, 3%, 20%);
+  --onyx: hsl(240, 3%, 16%);
+  --eerie-black-1: hsl(240, 3%, 12%);
+  --eerie-black-2: hsl(240, 3%, 10%);
+  --smoky-black: hsl(240, 3%, 7%);
   --white-1: hsl(0, 0%, 100%);
   --white-2: hsl(0, 0%, 98%);
   --orange-yellow-crayola: hsl(72, 100%, 50%);
   --vegas-gold: hsl(72, 100%, 50%);
-  --light-gray: hsl(0, 0%, 92%);
-  --light-gray-70: hsla(0, 0%, 92%, 0.85);
+  --light-gray: hsl(0, 0%, 96%);
+  --light-gray-70: hsla(0, 0%, 96%, 0.88);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
 
   /**
@@ -458,7 +458,7 @@ html { font-family: var(--ff-poppins); scroll-behavior: smooth; }
 
 body { background: var(--smoky-black); }
 
-.h1, .h2, .h3, .h4, .h5, .h6, .article-title, .name, .title, .navbar-link, .timeline-item-title, .toast-title {
+.h1, .h2, .h3, .h4, .h5, .h6, .article-title, .name, .title, .navbar-link, .timeline-item-title, .toast-title, .section-title, .service-item-title, .project-title, .form-title, .contact-title {
   font-family: var(--ff-outfit);
 }
 
@@ -485,6 +485,10 @@ article {
 .sidebar:hover {
   border-color: rgba(204, 255, 0, 0.1);
   box-shadow: var(--shadow-1), 0 0 30px rgba(204, 255, 0, 0.03);
+}
+
+.main-content {
+  padding-bottom: 75px; /* Prevent fixed navbar from covering content on mobile */
 }
 
 .separator {
@@ -782,7 +786,7 @@ main {
 .navbar-link {
   color: var(--light-gray);
   font-size: var(--fs-8);
-  padding: 20px 7px;
+  padding: 12px 10px;
   transition: color var(--transition-1);
   position: relative;
 }
@@ -937,6 +941,10 @@ main {
   margin-bottom: 8px;
   font-weight: var(--fw-600);
   color: var(--white-1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
 }
 
 .timeline-item-date {
@@ -1350,7 +1358,71 @@ textarea.form-input::-webkit-resizer { display: none; }
 .form-btn:disabled:hover::before { opacity: 0; }
 
 
+.timeline-item-title {
+  font-size: var(--fs-6);
+  line-height: 1.3;
+  margin-bottom: 8px;
+  font-weight: var(--fw-600);
+  color: var(--white-1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
 
+.timeline-item-date {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  color: var(--orange-yellow-crayola);
+  font-size: 0.88rem;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 580px) {
+  .timeline-item-date {
+    position: static;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    display: block;
+  }
+}
+
+.timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 32px;
+  left: -30px;
+  width: 2px;
+  height: calc(100% + 25px);
+  background: linear-gradient(to bottom, var(--vegas-gold), rgba(204, 255, 0, 0.1));
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: -33px;
+  height: 8px;
+  width: 8px;
+  background: var(--text-gradient-yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--vegas-gold);
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover::after {
+  transform: scale(1.25);
+  box-shadow: 0 0 12px var(--orange-yellow-crayola);
+}
+
+.timeline-text {
+  color: var(--light-gray);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
 
 
 /*-----------------------------------*\
@@ -1802,6 +1874,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     position: relative;
     width: max-content;
     margin: auto;
+    padding-bottom: 0;
   }
 
 
@@ -1944,6 +2017,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     min-width: 72%;
     width: 72%;
     margin: 0;
+    padding-bottom: 0;
   }
 
 
@@ -2012,13 +2086,12 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 /* Job type badge */
 .exp-badge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 600;
   padding: 2px 8px;
-  border-radius: 4px;
-  margin-left: 10px;
-  vertical-align: middle;
+  border-radius: 6px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
