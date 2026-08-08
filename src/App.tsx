@@ -83,7 +83,7 @@ export const App: React.FC = () => {
         </div>
       </div>
       <Toast show={showToast} />
-      <Chatbot />
+      <Chatbot setActiveTab={setActiveTab} />
     </main>
   );
 };
