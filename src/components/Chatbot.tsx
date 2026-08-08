@@ -57,7 +57,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ setActiveTab }) => {
       label: '📞 Contact Details',
       queryText: 'How can I contact you?',
       keywords: ['contact', 'email', 'phone', 'call', 'message', 'reach', 'gmail', 'linkedin', 'github', 'hire'],
-      response: "You can reach Aqib via email at aqibmansoor40@gmail.com or call/WhatsApp at +92 318 5952411. He's also active on LinkedIn: https://www.linkedin.com/in/aqib248 and GitHub: https://github.com/aqib248"
+      response: "You can reach Aqib via email at aqibmansoor40@gmail.com or call/WhatsApp at +92 318 5952411. He's also active on LinkedIn: https://www.linkedin.com/in/aqib248 and GitHub: https://github.com/aqib-mansoor"
     },
     {
       label: '💼 Availability',
@@ -158,8 +158,11 @@ export const Chatbot: React.FC<ChatbotProps> = ({ setActiveTab }) => {
     const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
     if (!GEMINI_API_KEY) return null;
 
-    try {
-      const systemInstruction = `You are Aqib Mansoor's virtual assistant. Aqib is a Full-Stack developer based in Rawalpindi, Pakistan. 
+    const models = ['gemini-flash-latest', 'gemini-3.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+
+    for (const model of models) {
+      try {
+        const systemInstruction = `You are Aqib Mansoor's virtual assistant. Aqib is a Full-Stack developer based in Rawalpindi, Pakistan. 
 His tech stack includes React, React Native, Node.js (Express), PHP (Laravel), MySQL, TypeScript, TailwindCSS.
 Key projects: 
 - Nexus Crypto Hub (Real-time crypto tracker with GSAP/CoinGecko)
@@ -168,36 +171,42 @@ Key projects:
 - Bannu Gul BP (Restaurant system)
 His email is aqibmansoor40@gmail.com. Phone/WhatsApp is +92 318 5952411.
 LinkedIn: https://www.linkedin.com/in/aqib248
-GitHub: https://github.com/aqib248
+GitHub: https://github.com/aqib-mansoor
 He is open to full-time work, remote contracts, and freelance projects.
 Keep your answers professional, friendly, and concise. Short answers are preferred.`;
 
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-      
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                { text: systemInstruction },
-                { text: `User message: ${userText}` }
-              ]
-            }
-          ]
-        })
-      });
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+        
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  { text: systemInstruction },
+                  { text: `User message: ${userText}` }
+                ]
+              }
+            ]
+          })
+        });
 
-      if (!response.ok) throw new Error('Gemini API call failed');
-      const data = await response.json();
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || null;
-    } catch (err) {
-      console.error("Gemini API Error:", err);
-      return null;
+        if (response.ok) {
+          const data = await response.json();
+          const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (reply) return reply;
+        } else {
+          const errData = await response.json().catch(() => ({}));
+          console.warn(`Gemini Model ${model} failed, trying next:`, errData);
+        }
+      } catch (err) {
+        console.error(`Gemini API Error with model ${model}:`, err);
+      }
     }
+    return null;
   };
 
   // Handle step-by-step contact collection conversational flow
