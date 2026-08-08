@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { SkillsSphere } from './SkillsSphere';
 
 interface SkillItem {
   name: string;
@@ -22,43 +23,29 @@ const ProgressBar: React.FC<{ name: string; color: string; level: number }> = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          setWidth(level);
-        }
+        if (entries[0].isIntersecting) setWidth(level);
       },
       { threshold: 0.1 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [level]);
 
   return (
-    <div className="skills-item" ref={ref} style={{ marginBottom: '18px', width: '100%' }}>
-      <div className="skill" style={{ width: '100%' }}>
-        <div className="title-wrapper" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="tag-dot" style={{ background: color, display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%' }}></span>
-            <span style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 500 }}>{name}</span>
-          </div>
-          <data style={{ color: 'var(--light-gray-70)', fontSize: '0.9rem' }}>{level}%</data>
-        </div>
-        <div className="skill-progress-bg" style={{ background: 'var(--jet)', height: '6px', borderRadius: '10px', overflow: 'hidden' }}>
-          <div
-            className="skill-progress-fill"
-            style={{
-              width: `${width}%`,
-              height: '100%',
-              background: 'var(--text-gradient-yellow)',
-              borderRadius: 'inherit',
-              transition: 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-          ></div>
-        </div>
+    <div className="skill-progress-item" ref={ref}>
+      <div className="skill-progress-meta">
+        <span className="skill-progress-name" style={{ '--bar-color': color } as React.CSSProperties}>{name}</span>
+        <span className="skill-progress-pct">{level}%</span>
+      </div>
+      <div className="skill-bar-bg">
+        <div
+          className="skill-bar-fill"
+          style={{
+            width: `${width}%`,
+            background: `linear-gradient(90deg, ${color}99, ${color})`,
+            boxShadow: `0 0 8px ${color}60`
+          }}
+        />
       </div>
     </div>
   );
@@ -71,8 +58,8 @@ export const Resume: React.FC = () => {
     {
       title: "Frontend Development",
       subtitle: "Interactive UI & SPAs",
-      glowColor: "rgba(204, 255, 0, 0.15)",
-      themeColor: "#CCFF00",
+      glowColor: "rgba(97, 218, 251, 0.15)",
+      themeColor: "#61dafb",
       icon: "desktop-outline",
       items: [
         { name: "React", color: "#61dafb", level: 95 },
@@ -87,22 +74,23 @@ export const Resume: React.FC = () => {
     {
       title: "Mobile Development",
       subtitle: "Cross-Platform & Native Apps",
-      glowColor: "rgba(204, 255, 0, 0.15)",
-      themeColor: "#CCFF00",
+      glowColor: "rgba(61, 220, 132, 0.15)",
+      themeColor: "#3ddc84",
       icon: "phone-portrait-outline",
       items: [
         { name: "React Native", color: "#61dafb", level: 90 },
+        { name: "Flutter", color: "#02569B", level: 85 },
         { name: "Expo", color: "#ffffff", level: 85 },
         { name: "Android (Java/Kotlin)", color: "#3ddc84", level: 80 },
-        { name: "Android Studio", color: "#4285f4", level: 85 },
-        { name: "iOS", color: "#a2aaad", level: 75 }
+        { name: "Swift / SwiftUI", color: "#F05138", level: 75 },
+        { name: "iOS (Xcode)", color: "#a2aaad", level: 75 }
       ]
     },
     {
       title: "Backend Development",
       subtitle: "APIs & Server Architecture",
-      glowColor: "rgba(204, 255, 0, 0.15)",
-      themeColor: "#CCFF00",
+      glowColor: "rgba(255, 45, 32, 0.15)",
+      themeColor: "#ff2d20",
       icon: "server-outline",
       items: [
         { name: "Laravel", color: "#ff2d20", level: 92 },
@@ -118,21 +106,23 @@ export const Resume: React.FC = () => {
     {
       title: "Databases",
       subtitle: "Data Architecture & Management",
-      glowColor: "rgba(204, 255, 0, 0.15)",
-      themeColor: "#CCFF00",
+      glowColor: "rgba(0, 117, 143, 0.15)",
+      themeColor: "#00758f",
       icon: "cube-outline",
       items: [
         { name: "MongoDB", color: "#47a248", level: 88 },
+        { name: "PostgreSQL", color: "#4169E1", level: 88 },
         { name: "Firestore", color: "#ffca2b", level: 85 },
         { name: "MySQL", color: "#00758f", level: 90 },
+        { name: "Redis", color: "#DC382D", level: 80 },
         { name: "SQL Server", color: "#cc292b", level: 80 }
       ]
     },
     {
       title: "Tools & Platforms",
       subtitle: "DevOps & Cloud Workflows",
-      glowColor: "rgba(204, 255, 0, 0.15)",
-      themeColor: "#CCFF00",
+      glowColor: "rgba(255, 153, 0, 0.15)",
+      themeColor: "#ff9900",
       icon: "settings-outline",
       items: [
         { name: "AWS", color: "#ff9900", level: 75 },
@@ -194,44 +184,49 @@ export const Resume: React.FC = () => {
         </ol>
       </section>
 
-      <section className="skills" style={{ marginTop: '45px' }}>
-        <div className="title-wrapper" style={{ marginBottom: '30px' }}>
+      <section className="skills">
+        <div className="title-wrapper" style={{ marginBottom: '20px' }}>
           <div className="icon-box">
             <ion-icon name="terminal-outline"></ion-icon>
           </div>
-          <h3 className="h3">Skills & Expertise</h3>
+          <h3 className="h3">Skills &amp; Expertise</h3>
         </div>
 
-        {/* Skill Category Filter Pills */}
-        <ul className="filter-list" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', listStyleType: 'none', padding: '0', marginBottom: '25px' }}>
-          {['All', 'Frontend', 'Backend', 'Mobile', 'Tools & Platforms'].map((category) => (
-            <li key={category} className="filter-item">
-              <button
-                className={`filter-btn ${activeSkillCategory === category ? 'active' : ''}`}
-                onClick={() => setActiveSkillCategory(category)}
-              >
-                {category}
-              </button>
-            </li>
-          ))}
-        </ul>
+        {/* Filter Pills Header */}
+        <div className="skills-hero" style={{ marginBottom: '25px', display: 'flex', justifyContent: 'center' }}>
+          <ul className="skills-filter-bar">
+            {['All', 'Frontend', 'Backend', 'Mobile', 'Tools & Platforms'].map((category) => (
+              <li key={category}>
+                <button
+                  className={`filter-btn ${activeSkillCategory === category ? 'active' : ''}`}
+                  onClick={() => setActiveSkillCategory(category)}
+                >
+                  {category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="skills-wrapper">
+        {/* Skill Cards Grid */}
+        <div className="skills-grid">
           {filteredSkills.map((skill, index) => (
             <div
               key={index}
-              className="skill-box floating reveal"
+              className="skill-card reveal"
               style={{
-                '--glow-color': skill.glowColor,
-                '--theme-color': skill.themeColor
+                '--card-accent': skill.themeColor,
+                '--card-glow': skill.glowColor
               } as React.CSSProperties}
             >
-              <div className="skill-header" style={{ marginBottom: '20px' }}>
-                <ion-icon name={skill.icon} className="gradient-icon"></ion-icon>
-                <h4 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#fff' }}>{skill.title}</h4>
+              <div className="skill-card-header">
+                <div className="skill-card-icon">
+                  <ion-icon name={skill.icon}></ion-icon>
+                </div>
+                <span className="skill-card-title">{skill.title}</span>
               </div>
-              <span className="skill-subtitle" style={{ display: 'block', fontSize: '0.85rem', color: 'var(--light-gray-70)', marginBottom: '20px' }}>{skill.subtitle}</span>
-              <div className="skill-progress-list" style={{ width: '100%' }}>
+              <p className="skill-card-subtitle">{skill.subtitle}</p>
+              <div className="skill-progress-row">
                 {skill.items.map((item, idx) => (
                   <ProgressBar
                     key={idx}

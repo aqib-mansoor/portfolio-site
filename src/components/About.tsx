@@ -35,6 +35,11 @@ export const About: React.FC = () => {
     const rotateX = -(y - centerY) / 10;
     const rotateY = (x - centerX) / 10;
     
+    const percentX = (x / rect.width) * 100;
+    const percentY = (y / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${percentX}%`);
+    card.style.setProperty('--mouse-y', `${percentY}%`);
+    
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     card.style.transition = 'transform 0.1s ease';
   };

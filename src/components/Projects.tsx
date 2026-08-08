@@ -219,6 +219,11 @@ export const Projects: React.FC = () => {
     const rotateX = -(y - centerY) / 15; // divisor adjusts tilt sensitivity
     const rotateY = (x - centerX) / 15;
     
+    const percentX = (x / rect.width) * 100;
+    const percentY = (y / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${percentX}%`);
+    card.style.setProperty('--mouse-y', `${percentY}%`);
+    
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     card.style.transition = 'transform 0.1s ease';
   };

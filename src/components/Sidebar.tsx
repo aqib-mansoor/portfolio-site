@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SidebarAura } from './SidebarAura';
 
 export const Sidebar: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
@@ -9,6 +10,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     <aside className={`sidebar ${isActive ? 'active' : ''}`} data-sidebar>
+      <SidebarAura />
       <div className="sidebar-info">
         <figure className="avatar-box">
           <img src="/assets/images/my-avatar.png" alt="Aqib Mansoor" width="80" />

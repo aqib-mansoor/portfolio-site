@@ -9,6 +9,7 @@ import { Contact } from './components/Contact';
 import { Toast } from './components/Toast';
 import { Chatbot } from './components/Chatbot';
 import { CanvasParticles } from './components/CanvasParticles';
+import { CursorFluid } from './components/CursorFluid';
 import { usePortfolioStore } from './store/usePortfolioStore';
 
 export const App: React.FC = () => {
@@ -74,6 +75,7 @@ export const App: React.FC = () => {
   return (
     <main>
       <CanvasParticles />
+      <CursorFluid />
       <Sidebar />
       <div className="main-content">
         <Navbar />
