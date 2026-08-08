@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { ParticleTrail } from './ParticleTrail';
 
 interface SkillItem {
   name: string;
@@ -146,6 +147,7 @@ export const Resume: React.FC = () => {
 
   return (
     <article className="resume active" data-page="resume">
+      <ParticleTrail />
       <header>
         <h2 className="h2 article-title" aria-label="Page Title: Resume">Resume</h2>
       </header>
@@ -209,34 +211,65 @@ export const Resume: React.FC = () => {
 
         {/* Skill Cards Grid */}
         <div className="skills-grid">
-          {filteredSkills.map((skill, index) => (
-            <div
-              key={index}
-              className="skill-card reveal"
-              style={{
-                '--card-accent': skill.themeColor,
-                '--card-glow': skill.glowColor
-              } as React.CSSProperties}
-            >
-              <div className="skill-card-header">
-                <div className="skill-card-icon">
-                  <ion-icon name={skill.icon}></ion-icon>
+          {filteredSkills.map((skill, index) => {
+            const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+              const card = e.currentTarget;
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+
+              // Spotlight cursor coordinates
+              const percentX = (x / rect.width) * 100;
+              const percentY = (y / rect.height) * 100;
+              card.style.setProperty('--mouse-x', `${percentX}%`);
+              card.style.setProperty('--mouse-y', `${percentY}%`);
+
+              // 3D Perspective Rotation
+              const rotateX = -(y - centerY) / 8;
+              const rotateY = (x - centerX) / 8;
+              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            };
+
+            const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+              const card = e.currentTarget;
+              card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+              card.style.transition = 'transform 0.5s ease-out';
+            };
+
+            return (
+              <div key={index} className="skill-card-wrapper">
+                <div
+                  className="skill-card reveal"
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  style={{
+                    '--card-accent': skill.themeColor,
+                    '--card-glow': skill.glowColor
+                  } as React.CSSProperties}
+                >
+                  <div className="skill-card-header">
+                    <div className="skill-card-icon">
+                      <ion-icon name={skill.icon}></ion-icon>
+                    </div>
+                    <span className="skill-card-title">{skill.title}</span>
+                  </div>
+                  <p className="skill-card-subtitle">{skill.subtitle}</p>
+                  <div className="skill-progress-row">
+                    {skill.items.map((item, idx) => (
+                      <ProgressBar
+                        key={idx}
+                        name={item.name}
+                        color={item.color}
+                        level={item.level}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <span className="skill-card-title">{skill.title}</span>
               </div>
-              <p className="skill-card-subtitle">{skill.subtitle}</p>
-              <div className="skill-progress-row">
-                {skill.items.map((item, idx) => (
-                  <ProgressBar
-                    key={idx}
-                    name={item.name}
-                    color={item.color}
-                    level={item.level}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     </article>

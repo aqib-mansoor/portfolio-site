@@ -1142,6 +1142,10 @@ main {
 }
 
 /* ── Individual skill card ── */
+.skill-card-wrapper {
+  perspective: 1000px;
+}
+
 .skill-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1149,7 +1153,8 @@ main {
   padding: 18px 18px 16px;
   position: relative;
   overflow: hidden;
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transition: transform 0.15s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transform-style: preserve-3d;
 }
 
 .skill-card::before {
@@ -1161,12 +1166,27 @@ main {
   opacity: 0.7;
   border-radius: 16px 16px 0 0;
   transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 80px at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--card-glow, rgba(255, 219, 112, 0.08)) 0%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.skill-card:hover::after {
+  opacity: 1;
 }
 
 .skill-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.13);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), 0 0 20px var(--card-glow, rgba(255, 219, 112, 0.08));
+  border-color: var(--card-accent, rgba(255, 255, 255, 0.15));
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 
 .skill-card:hover::before {

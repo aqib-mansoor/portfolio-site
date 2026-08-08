@@ -50,8 +50,38 @@ const StatItem: React.FC<StatItemProps> = ({ target, label, suffix = '', icon })
     return () => observer.disconnect();
   }, [target, hasAnimated]);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const percentX = (x / rect.width) * 100;
+    const percentY = (y / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${percentX}%`);
+    card.style.setProperty('--mouse-y', `${percentY}%`);
+
+    const rotateX = -(y - centerY) / 8;
+    const rotateY = (x - centerX) / 8;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    card.style.transition = 'transform 0.5s ease-out';
+  };
+
   return (
-    <div className="service-item stats-item" ref={ref} style={{ display: 'flex', alignItems: 'center', gap: '15px' } as React.CSSProperties}>
+    <div
+      className="service-item stats-item"
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ display: 'flex', alignItems: 'center', gap: '15px', transition: 'transform 0.15s ease' } as React.CSSProperties}
+    >
       <div className="service-icon-box" style={{ background: 'rgba(255, 219, 112, 0.08)', borderRadius: '12px', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center' } as React.CSSProperties}>
         <ion-icon name={icon} style={{ fontSize: '24px', color: 'var(--orange-yellow-crayola)' } as React.CSSProperties}></ion-icon>
       </div>
