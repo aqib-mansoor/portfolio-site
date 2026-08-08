@@ -7,6 +7,7 @@ import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Toast } from './components/Toast';
+import { Chatbot } from './components/Chatbot';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('about');
@@ -82,6 +83,7 @@ export const App: React.FC = () => {
         </div>
       </div>
       <Toast show={showToast} />
+      <Chatbot />
     </main>
   );
 };
