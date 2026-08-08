@@ -3,8 +3,6 @@ import { usePortfolioStore } from '../store/usePortfolioStore';
 import type { Project } from '../store/usePortfolioStore';
 
 export const Projects: React.FC = () => {
-  const searchQuery = usePortfolioStore((state) => state.searchQuery);
-  const setSearchQuery = usePortfolioStore((state) => state.setSearchQuery);
   
   const activeCategory = usePortfolioStore((state) => state.activeCategory);
   const setActiveCategory = usePortfolioStore((state) => state.setActiveCategory);
@@ -208,11 +206,7 @@ export const Projects: React.FC = () => {
   const categories = ['all', 'Web Development', 'Web Design'];
 
   const filteredProjects = projectList.filter((project) => {
-    const matchesCategory = activeCategory === 'all' || project.category === activeCategory;
-    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          project.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          project.tech.some(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    return activeCategory === 'all' || project.category === activeCategory;
   });
 
   return (
@@ -222,23 +216,8 @@ export const Projects: React.FC = () => {
       </header>
 
       <section className="projects">
-        {/* Search & Filter Controls */}
+        {/* Category Filter Controls */}
         <div className="portfolio-controls">
-          {/* Search Input */}
-          <div className="search-bar-wrapper">
-            <input
-              type="text"
-              placeholder="Search projects by title, description or technology..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="form-input search-input"
-              aria-label="Search projects"
-            />
-            <span className="search-icon">
-              <ion-icon name="search-outline"></ion-icon>
-            </span>
-          </div>
-
           {/* Category Filter Pills */}
           <ul className="filter-list">
             {categories.map((category) => (
