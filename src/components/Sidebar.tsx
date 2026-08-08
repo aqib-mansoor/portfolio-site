@@ -16,7 +16,14 @@ export const Sidebar: React.FC = () => {
 
         <div className="info-content">
           <h1 className="name" title="Aqib Mansoor">Aqib Mansoor</h1>
-          <p className="title">Web & App Developer</p>
+          <button
+            className="title"
+            onClick={toggleSidebar}
+            aria-label="Web & App Developer - Toggle contacts info"
+            aria-expanded={isActive}
+          >
+            Web & App Developer
+          </button>
         </div>
 
         <button

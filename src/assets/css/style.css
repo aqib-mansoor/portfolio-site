@@ -656,6 +656,14 @@ main {
   padding: 4px 14px;
   border-radius: 8px;
   letter-spacing: 0.5px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.info-content .title:hover {
+  background: rgba(204, 255, 0, 0.15);
+  border-color: rgba(204, 255, 0, 0.3);
 }
 
 .info_more-btn {
@@ -2204,4 +2212,16 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn:active:not(:disabled) {
   transform: translateY(0);
+}
+
+/* Explicit focus styles for keyboard users */
+.navbar-link:focus-visible,
+.info_more-btn:focus-visible,
+.info-content .title:focus-visible,
+.social-link:focus-visible,
+.form-btn:focus-visible,
+.form-input:focus-visible,
+.contact-link:focus-visible {
+  outline: 2px solid var(--orange-yellow-crayola) !important;
+  outline-offset: 3px !important;
 }
