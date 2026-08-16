@@ -26,17 +26,18 @@ export const Experience: React.FC = () => {
       tech: ["React", "Next.js", "React Native", "Expo", "Laravel", "Tailwind CSS"]
     },
     {
-      role: "React Intern",
+      role: "Web Development Intern",
       company: "Devrolin",
       type: "Internship",
       duration: "Feb 2025 — Jun 2025",
       points: [
-        "Developed dynamic web pages using React and styled layouts.",
-        "Integrated REST APIs for real-time dynamic content display.",
-        "Built reusable components and optimized frontend page load performance.",
-        "Worked with git workflows and collaborative team sprints."
+        "Built full-stack web applications using PHP, Laravel, and React JS.",
+        "Developed RESTful APIs with Laravel and consumed them on the frontend using React.",
+        "Designed and managed relational databases, writing optimized SQL queries.",
+        "Created responsive, dynamic UI components and integrated them with backend services.",
+        "Collaborated with the team using Git workflows and participated in agile sprints."
       ],
-      tech: ["React", "TypeScript", "REST API", "Git"]
+      tech: ["PHP", "Laravel", "React JS", "MySQL", "REST API", "Git"]
     },
     {
       role: "React Intern",
