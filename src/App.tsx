@@ -10,7 +10,7 @@ import { Toast } from './components/Toast';
 import { Chatbot } from './components/Chatbot';
 import { CanvasParticles } from './components/CanvasParticles';
 import { BackgroundOrbs } from './components/BackgroundOrbs';
-import { CursorFluid } from './components/CursorFluid';
+
 import { Analytics } from './components/Analytics';
 import { usePortfolioStore } from './store/usePortfolioStore';
 
@@ -19,7 +19,7 @@ export const App: React.FC = () => {
   const activeProject = usePortfolioStore((state) => state.activeProject);
   const setActiveProject = usePortfolioStore((state) => state.setActiveProject);
   const theme = usePortfolioStore((state) => state.theme);
-  const fluidCursorActive = usePortfolioStore((state) => state.fluidCursorActive);
+
   const [showToast, setShowToast] = useState<boolean>(false);
 
   const handleSuccess = () => {
@@ -87,7 +87,7 @@ export const App: React.FC = () => {
     <main>
       <CanvasParticles />
       <BackgroundOrbs />
-      {fluidCursorActive && <CursorFluid />}
+
       <Sidebar />
       <div className="main-content">
         <Navbar />

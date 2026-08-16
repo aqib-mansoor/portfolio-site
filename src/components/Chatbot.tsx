@@ -245,56 +245,24 @@ export const Chatbot: React.FC = () => {
 
   // Gemini API helper call
   const callGeminiAPI = async (userText: string): Promise<string | null> => {
-    const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!GEMINI_API_KEY) return null;
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userText })
+      });
 
-    const models = ['gemini-flash-latest', 'gemini-3.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
-
-    for (const model of models) {
-      try {
-        const systemInstruction = `You are Aqib Mansoor's virtual assistant. Aqib is a Full-Stack developer based in Rawalpindi, Pakistan. 
-His tech stack includes React, React Native, Node.js (Express), PHP (Laravel), MySQL, TypeScript, TailwindCSS.
-Key projects: 
-- Nexus Crypto Hub (Real-time crypto tracker with GSAP/CoinGecko)
-- FoodieExpress (Multi-vendor delivery system with Customer, Vendor, Rider and Admin applications)
-- Apply Daddy (Automated job tracker)
-- Bannu Gul BP (Restaurant system)
-His email is aqibmansoor40@gmail.com. Phone/WhatsApp is +92 318 5952411.
-LinkedIn: https://www.linkedin.com/in/aqib248
-GitHub: https://github.com/aqib-mansoor
-He is open to full-time work, remote contracts, and freelance projects.
-Keep your answers professional, friendly, and concise. Short answers are preferred.`;
-
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
-        
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  { text: systemInstruction },
-                  { text: `User message: ${userText}` }
-                ]
-              }
-            ]
-          })
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (reply) return reply;
-        } else {
-          const errData = await response.json().catch(() => ({}));
-          console.warn(`Gemini Model ${model} failed, trying next:`, errData);
-        }
-      } catch (err) {
-        console.error(`Gemini API Error with model ${model}:`, err);
+      if (response.ok) {
+        const data = await response.json();
+        return data.reply || null;
+      } else {
+        const errData = await response.json().catch(() => ({}));
+        console.warn('API route /api/chat failed:', errData);
       }
+    } catch (err) {
+      console.error('Error calling /api/chat endpoint:', err);
     }
     return null;
   };

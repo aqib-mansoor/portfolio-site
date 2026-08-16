@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ParticleTrail } from './ParticleTrail';
+
 
 interface SkillItem {
   name: string;
@@ -147,7 +147,7 @@ export const Resume: React.FC = () => {
 
   return (
     <article className="resume active" data-page="resume">
-      <ParticleTrail />
+
       <header>
         <h2 className="h2 article-title" aria-label="Page Title: Resume">Resume</h2>
       </header>
